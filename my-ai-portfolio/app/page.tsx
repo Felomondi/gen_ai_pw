@@ -13,7 +13,8 @@ const education = {
     degree: "BSc Computer Science & Math (Statistics)",
     college: "Vassar College",
     expected: "Expected: May 2026",
-    courses: ["Object Oriented Programming (Java)", "Data Structures & Algorithms", "Data Science", "Android Development", "Compilers"]
+    courses: ["Object Oriented Programming (Java)", "Data Structures & Algorithms", "Data Science", 
+      "Android Development", "Compilers", "Operating Systems", "Calculus I, II & III", "Linear Algebra", "Probability"]
 };
 
 // Animation Variants
