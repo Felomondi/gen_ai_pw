@@ -94,3 +94,54 @@ body {
   animation: float 14s ease-in-out infinite alternate;
   animation-delay: -5s;
 }
+
+
+/* Keyframes for the sparkle animation on chat button*/
+@keyframes sparkle-animation {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Base style for each sparkle element */
+.sparkle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle-animation 2s infinite;
+}
+
+/* Position and delay each sparkle differently for a random effect */
+.sparkle:nth-of-type(1) {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+.sparkle:nth-of-type(2) {
+  top: 20%;
+  left: 90%;
+  animation-delay: 0.3s;
+}
+.sparkle:nth-of-type(3) {
+  top: 80%;
+  left: 85%;
+  animation-delay: 0.7s;
+}
+.sparkle:nth-of-type(4) {
+  top: 90%;
+  left: 20%;
+  animation-delay: 1.2s;
+}
+.sparkle:nth-of-type(5) {
+  top: 50%;
+  left: 50%;
+  animation-delay: 1.5s;
+}

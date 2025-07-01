@@ -10,7 +10,7 @@ const projects = [
   {
     title: "LitLore - Android Prototype",
     description: "An Android app for book discovery that integrates with the Google Books API. Features include user login, dynamic search by title or author, a book details page, and the ability for users to submit text reviews and star ratings.",
-    tags: ["Android", "Google Books API"],
+    tags: ["Java", "Google Books API"],
     githubUrl: "https://github.com/Felomondi/Litlore-android",
     liveUrl: null,
   },

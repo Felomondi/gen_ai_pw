@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import GlassCard from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
-import { Download, Rocket, GraduationCap } from "lucide-react";
+import { Download, Rocket, GraduationCap, Github, Linkedin } from "lucide-react"; // Added Github and Linkedin icons
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from 'framer-motion';
@@ -14,7 +14,8 @@ const education = {
     college: "Vassar College",
     expected: "Expected: May 2026",
     courses: ["Object Oriented Programming (Java)", "Data Structures & Algorithms", "Data Science", 
-      "Android Development", "Compilers", "Operating Systems", "Calculus I, II & III", "Linear Algebra", "Probability"]
+      "Android Development", "Compilers", "Operating Systems", "Calculuc I, II & III", "Linear Algebra",
+      "probability"]
 };
 
 // Animation Variants
@@ -36,7 +37,6 @@ const lineItemVariants = {
 }
 
 export default function HomePage() {
-  // Fix for hydration errors with animations
   const [isClient, setIsClient] = useState(false);
   useEffect(() => { setIsClient(true) }, []);
 
@@ -48,11 +48,10 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
             <div className="w-48 h-48 md:w-60 md:h-60 flex-shrink-0">
               <Image
-                src="/images/ai_pic.png"
+                src="/images/IMG_6116.jpg"
                 alt="Felix Omondi"
                 width={240}
                 height={240}
-                // Typo `object-cosver` corrected to `object-cover`
                 className="rounded-full object-cover border-4 border-zinc-500/30 shadow-lg"
                 priority
               />
@@ -65,7 +64,7 @@ export default function HomePage() {
                 Welcome to my digital space.
               </h1>
               <p className="mt-4 max-w-xl text-lg text-zinc-400">
-                I transform ideas into modern web experiences. Explore my work and see what I can build.
+                I am a rising Senior at Vassar College studying Computer Science and Math. I am interested in AI, Machine Learning, and Software Development.
               </p>
               <div className="mt-6 flex gap-4">
                 <Button asChild>
@@ -85,12 +84,41 @@ export default function HomePage() {
           </div>
 
           {/* --- SEPARATOR --- */}
-          <div className="border-t border-zinc-500/30 my-8"></div>
+          <div className="border-t border-zinc-500/30 my-4"></div>
 
-          {/* --- SECTION 2: EDUCATION (New and Colorful) --- */}
+          {/* --- SECTION 2: SOCIAL LINKS (New Section) --- */}
           {isClient && (
             <motion.section 
-              className="px-8 md:px-12"
+                className="py-6 text-center"
+                variants={sectionVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                <h2 className="text-2xl font-bold text-zinc-200 mb-4">Connect With Me</h2>
+                <div className="flex justify-center gap-4">
+                    <Button asChild variant="secondary">
+                        <a href="https://github.com/Felomondi" target="_blank" rel="noopener noreferrer">
+                            <Github className="mr-2 h-4 w-4" />
+                            GitHub
+                        </a>
+                    </Button>
+                     <Button asChild variant="secondary">
+                        <a href="https://www.linkedin.com/in/felomondi/" target="_blank" rel="noopener noreferrer">
+                            <Linkedin className="mr-2 h-4 w-4" />
+                            LinkedIn
+                        </a>
+                    </Button>
+                </div>
+            </motion.section>
+          )}
+
+          {/* --- SEPARATOR --- */}
+          <div className="border-t border-zinc-500/30 my-4"></div>
+
+          {/* --- SECTION 3: EDUCATION --- */}
+          {isClient && (
+            <motion.section 
+              className="px-8 md:px-12 py-6"
               variants={sectionVariants}
               initial="hidden"
               animate="visible"
