@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
+// We add useState and useEffect to the imports
+import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare } from 'lucide-react';
@@ -9,12 +10,15 @@ import Chatbot from './Chatbot';
 export default function ChatbotButton() {
   const pathname = usePathname();
   const [isChatOpen, setIsChatOpen] = useState(false);
+  
+  // --- FIX FOR HYDRATION ERROR ---
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    // This code runs only in the browser, after the page has loaded
+    setIsClient(true);
+  }, []);
+  // --- END OF FIX ---
 
-  if (pathname === '/contact') {
-    return null;
-  }
-
-  // Animation variants for the button itself, including an exit animation
   const buttonContainerVariants = {
     hidden: { opacity: 0, y: 50, scale: 0.8 },
     visible: { 
@@ -29,6 +33,11 @@ export default function ChatbotButton() {
     },
   };
 
+  // If we are on the contact page, or not on the client yet, render nothing.
+  if (pathname === '/contact' || !isClient) {
+    return null;
+  }
+
   return (
     <>
       {/* AnimatePresence for the floating button */}
@@ -39,7 +48,7 @@ export default function ChatbotButton() {
             variants={buttonContainerVariants}
             initial="hidden"
             animate="visible"
-            exit="exit" // This tells it to use the exit animation
+            exit="exit"
           >
             <p className="text-sm font-medium text-zinc-200 bg-zinc-900/50 backdrop-blur-sm px-3 py-1 rounded-full border border-zinc-700">
               Chat with Felix AI
