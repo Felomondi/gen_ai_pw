@@ -28,6 +28,8 @@ const systemPrompt = `
 export async function POST(req: NextRequest) {
   console.log("Received a request to /api/chat"); // Log that the function started
 
+  console.log("TESTING ENV:", process.env.TEST_VARIABLE); 
+
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     console.error("CRITICAL: GEMINI_API_KEY is not available in the environment.");
