@@ -1,18 +1,66 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X, Send } from 'lucide-react';
+import { X, Send, Bot, User } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 
-// Define the props the component will accept
 interface ChatbotProps {
-  onClose: () => void; // A function to close the chat
+  onClose: () => void;
+}
+
+interface Message {
+  role: 'user' | 'model';
+  parts: { text: string }[];
 }
 
 export default function Chatbot({ onClose }: ChatbotProps) {
-  // Animation for the chat window
+  const [messages, setMessages] = useState<Message[]>([
+    { role: 'model', parts: [{ text: "Hello! I'm Felix's AI assistant. Ask me about his skills, experience, or projects." }] }
+  ]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [messages]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    const userMessage: Message = { role: 'user', parts: [{ text: input }] };
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: [...messages, userMessage] }), // Send the whole history
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        const modelMessage: Message = { role: 'model', parts: [{ text: data.reply }] };
+        setMessages(prev => [...prev, modelMessage]);
+      } else {
+        const errorMessage: Message = { role: 'model', parts: [{ text: "Sorry, I couldn't connect to the AI. Please try again later." }] };
+        setMessages(prev => [...prev, errorMessage]);
+      }
+    } catch (error) {
+      const errorMessage: Message = { role: 'model', parts: [{ text: "An error occurred. Please check the connection." }] };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const chatWindowVariants = {
     hidden: { opacity: 0, scale: 0.95, y: 50 },
     visible: { opacity: 1, scale: 1, y: 0 },
@@ -28,8 +76,6 @@ export default function Chatbot({ onClose }: ChatbotProps) {
       exit="exit"
     >
       <div className="bg-zinc-900/50 backdrop-blur-xl border border-zinc-700 rounded-2xl shadow-2xl flex flex-col h-[70vh]">
-        
-        {/* Header */}
         <header className="flex items-center justify-between p-4 border-b border-zinc-700">
           <div className="flex items-center gap-3">
             <div className="w-4 h-4 rounded-full bg-green-400 animate-pulse"></div>
@@ -40,23 +86,35 @@ export default function Chatbot({ onClose }: ChatbotProps) {
           </button>
         </header>
 
-        {/* Message Area */}
         <div className="flex-grow p-4 space-y-4 overflow-y-auto">
-          {/* Placeholder for messages */}
-          <div className="p-3 bg-purple-900/50 rounded-lg max-w-xs self-start">
-            <p className="text-sm text-zinc-200">Hello! I'm Felix's AI assistant. Feel free to ask me any questions about his skills, experience, or projects.</p>
-          </div>
+          {messages.map((msg, index) => (
+            <div key={index} className={`flex items-start gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+              {msg.role === 'model' && <Bot className="w-6 h-6 text-purple-400 flex-shrink-0" />}
+              <div className={`p-3 rounded-lg max-w-xs ${msg.role === 'user' ? 'bg-blue-600/50 text-white' : 'bg-purple-900/50 text-zinc-200'}`}>
+                <p className="text-sm">{msg.parts[0].text}</p>
+              </div>
+              {msg.role === 'user' && <User className="w-6 h-6 text-blue-300 flex-shrink-0" />}
+            </div>
+          ))}
+          {isLoading && (
+            <div className="flex items-start gap-3 justify-start">
+                <Bot className="w-6 h-6 text-purple-400 flex-shrink-0" />
+                <div className="p-3 rounded-lg bg-purple-900/50 text-zinc-200">
+                    <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-zinc-400 rounded-full animate-pulse delay-0"></span>
+                        <span className="w-2 h-2 bg-zinc-400 rounded-full animate-pulse delay-150"></span>
+                        <span className="w-2 h-2 bg-zinc-400 rounded-full animate-pulse delay-300"></span>
+                    </div>
+                </div>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
         </div>
 
-        {/* Input Form */}
         <footer className="p-4 border-t border-zinc-700">
-          <form className="flex items-center gap-2">
-            <Input 
-              type="text" 
-              placeholder="Ask about a project..." 
-              className="flex-grow bg-zinc-800/50 border-zinc-700 text-white" 
-            />
-            <Button type="submit" size="icon" aria-label="Send message">
+          <form onSubmit={handleSubmit} className="flex items-center gap-2">
+            <Input type="text" placeholder="Ask about a project..." value={input} onChange={e => setInput(e.target.value)} disabled={isLoading} className="flex-grow bg-zinc-800/50 border-zinc-700 text-white" />
+            <Button type="submit" size="icon" aria-label="Send message" disabled={isLoading}>
               <Send size={20} />
             </Button>
           </form>
@@ -65,3 +123,4 @@ export default function Chatbot({ onClose }: ChatbotProps) {
     </motion.div>
   );
 }
+
