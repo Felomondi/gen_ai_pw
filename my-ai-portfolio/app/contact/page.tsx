@@ -3,13 +3,10 @@
 import React, { useState, useEffect } from "react";
 import GlassCard from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"; // We will create this
-import { Textarea } from "@/components/ui/textarea"; // And this
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { Send, Loader, CheckCircle, AlertCircle } from "lucide-react";
-
-// You may need to create these styled input components if they don't exist
-// from shadcn/ui. For now, let's assume you have them or will add them.
 
 export default function ContactPage() {
   const [isClient, setIsClient] = useState(false);
@@ -34,7 +31,7 @@ export default function ContactPage() {
 
     if (response.ok) {
       setStatus('success');
-      setFormData({ name: '', email: '', message: '' }); // Reset form
+      setFormData({ name: '', email: '', message: '' });
     } else {
       setStatus('error');
     }
@@ -74,7 +71,7 @@ export default function ContactPage() {
                 </motion.div>
                 <motion.div variants={itemVariants}>
                   <label htmlFor="message" className="block text-sm font-medium text-zinc-200 mb-2">Message</label>
-                  {/* FIX IS HERE */}
+                  {/* THE FIX IS HERE */}
                   <Textarea id="message" name="message" required value={formData.message} onChange={handleChange} placeholder="Let&apos;s build something amazing..." rows={5} className="bg-zinc-800/50 border-zinc-700 text-white" />
                 </motion.div>
                 <motion.div variants={itemVariants}>
@@ -89,7 +86,7 @@ export default function ContactPage() {
               </form>
               
               {status === 'success' && (
-                  <p className="text-green-400 text-center mt-4">Thank you for your message! I'll get back to you soon.</p>
+                  <p className="text-green-400 text-center mt-4">Thank you for your message! I&apos;ll get back to you soon.</p>
               )}
               {status === 'error' && (
                   <p className="text-red-400 text-center mt-4">Something went wrong. Please try again later.</p>
