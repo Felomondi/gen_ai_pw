@@ -48,7 +48,7 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
             <div className="w-48 h-48 md:w-60 md:h-60 flex-shrink-0">
               <Image
-                src="/images/IMG_6116.jpg"
+                src="/images/ai_pic.png"
                 alt="Felix Omondi"
                 width={240}
                 height={240}
