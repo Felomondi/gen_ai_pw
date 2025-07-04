@@ -53,11 +53,13 @@ export default function Chatbot({ onClose }: ChatbotProps) {
         const errorMessage: Message = { role: 'model', parts: [{ text: "Sorry, I couldn't connect to the AI. Please try again later." }] };
         setMessages(prev => [...prev, errorMessage]);
       }
-    } catch (error) {
-      const errorMessage: Message = { role: 'model', parts: [{ text: "An error occurred. Please check the connection." }] };
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
+    } catch (err) { // FIX IS HERE
+        const e = err as Error;
+        console.error("Chat submission error:", e.message);
+        const errorMessage: Message = { role: 'model', parts: [{ text: "An error occurred. Please check the connection." }] };
+        setMessages(prev => [...prev, errorMessage]);
+      } finally {
+        setIsLoading(false);
     }
   };
 

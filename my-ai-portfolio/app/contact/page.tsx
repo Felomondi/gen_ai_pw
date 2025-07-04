@@ -74,7 +74,8 @@ export default function ContactPage() {
                 </motion.div>
                 <motion.div variants={itemVariants}>
                   <label htmlFor="message" className="block text-sm font-medium text-zinc-200 mb-2">Message</label>
-                  <Textarea id="message" name="message" required value={formData.message} onChange={handleChange} placeholder="Let's build something amazing..." rows={5} className="bg-zinc-800/50 border-zinc-700 text-white" />
+                  {/* FIX IS HERE */}
+                  <Textarea id="message" name="message" required value={formData.message} onChange={handleChange} placeholder="Let&apos;s build something amazing..." rows={5} className="bg-zinc-800/50 border-zinc-700 text-white" />
                 </motion.div>
                 <motion.div variants={itemVariants}>
                   <Button type="submit" className="w-full" disabled={status === 'loading'}>

@@ -58,7 +58,7 @@ export default function HomePage() {
             </div>
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <p className="text-xl md:text-2xl text-zinc-300">
-                Hello, I'm Felix Omondi.
+                Hello, I&apos;m Felix Omondi.
               </p>
               <h1 className="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
                 Welcome to my digital space.

@@ -1,3 +1,5 @@
+// app/api/chat/route.ts
+
 import { NextRequest, NextResponse } from 'next/server';
 
 const knowledgeBase = `
@@ -26,10 +28,6 @@ const systemPrompt = `
 `;
 
 export async function POST(req: NextRequest) {
-  console.log("Received a request to /api/chat"); // Log that the function started
-
-  console.log("TESTING ENV:", process.env.TEST_VARIABLE); 
-
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     console.error("CRITICAL: GEMINI_API_KEY is not available in the environment.");
@@ -38,7 +36,6 @@ export async function POST(req: NextRequest) {
 
   try {
     const { messages } = await req.json();
-    console.log("Parsed messages from request body:", messages);
 
     const payload = {
       contents: messages,
@@ -49,11 +46,9 @@ export async function POST(req: NextRequest) {
         temperature: 0.7,
       }
     };
-    console.log("Constructed payload to send to Gemini.");
 
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
 
-    console.log("Sending request to Gemini API...");
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -63,7 +58,6 @@ export async function POST(req: NextRequest) {
     const responseData = await response.json();
 
     if (!response.ok) {
-      // THIS IS THE MOST IMPORTANT LOG: It will show the exact error from Google
       console.error("ERROR RESPONSE FROM GEMINI API:", JSON.stringify(responseData, null, 2));
       return NextResponse.json({ error: 'Failed to get response from AI', details: responseData }, { status: response.status });
     }
@@ -71,14 +65,14 @@ export async function POST(req: NextRequest) {
     const text = responseData.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (text) {
-      console.log("Successfully received text from Gemini.");
       return NextResponse.json({ reply: text });
     } else {
-      console.error("No text content in AI response:", JSON.stringify(responseData, null, 2));
+      console.error("No content in AI response:", JSON.stringify(responseData, null, 2));
       return NextResponse.json({ error: 'No content in AI response' }, { status: 500 });
     }
-  } catch (error: any) {
-    console.error("FATAL ERROR in /api/chat:", error);
-    return NextResponse.json({ error: 'Something went wrong on the server.', details: error.message }, { status: 500 });
+  } catch (error) { // <-- FIX IS HERE
+    const e = error as Error;
+    console.error("FATAL ERROR in /api/chat:", e);
+    return NextResponse.json({ error: 'Something went wrong on the server.', details: e.message }, { status: 500 });
   }
 }
