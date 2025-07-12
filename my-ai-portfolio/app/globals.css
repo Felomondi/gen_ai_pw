@@ -1,0 +1,147 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* We define the animation keyframes here */
+@keyframes animated-gradient {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+body {
+  background-color: #09090b;
+  /*
+    We use the same gradient, but make it much larger with `background-size`.
+    This gives the animation room to move.
+  */
+  background-image: radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 0.1) 0px, transparent 50%), 
+                    radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 52% 99%, hsla(355, 98%, 71%, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 10% 29%, hsla(256, 96%, 68%, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 79% 53%, hsla(343, 68%, 73%, 0.1) 0px, transparent 50%);
+  background-size: 200% 200%; /* Makes the gradient larger than the viewport */
+  
+  /* We apply the animation here */
+  animation: animated-gradient 15s ease infinite alternate; /* 15s duration, loops forever */
+  color: white;
+}
+
+
+/* Define the new floating animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-30px) translateX(20px);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.8;
+  }
+}
+
+/* Base style for all shapes */
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px); /* This makes the shapes very soft and ethereal */
+}
+
+/* Individual shape styles, positions, and animation delays */
+.shape1 {
+  width: 400px;
+  height: 400px;
+  top: -150px;
+  left: -150px;
+  background-color: hsla(215, 98%, 61%, 0.2); /* Soft blue */
+  animation: float 12s ease-in-out infinite alternate;
+}
+
+.shape2 {
+  width: 300px;
+  height: 300px;
+  bottom: -100px;
+  right: -100px;
+  background-color: hsla(125, 98%, 72%, 0.2); /* Soft green */
+  animation: float 15s ease-in-out infinite alternate;
+  animation-delay: -3s; /* Start partway through the animation */
+}
+
+.shape3 {
+  width: 250px;
+  height: 250px;
+  top: 50%;
+  left: 20%;
+  background-color: hsla(355, 98%, 71%, 0.2); /* Soft red */
+  animation: float 10s ease-in-out infinite alternate;
+  animation-delay: -1s;
+}
+
+.shape4 {
+  width: 200px;
+  height: 200px;
+  top: 10%;
+  right: 15%;
+  background-color: hsla(256, 96%, 68%, 0.2); /* Soft purple */
+  animation: float 14s ease-in-out infinite alternate;
+  animation-delay: -5s;
+}
+
+
+/* Keyframes for the sparkle animation on chat button*/
+@keyframes sparkle-animation {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Base style for each sparkle element */
+.sparkle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle-animation 2s infinite;
+}
+
+/* Position and delay each sparkle differently for a random effect */
+.sparkle:nth-of-type(1) {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+.sparkle:nth-of-type(2) {
+  top: 20%;
+  left: 90%;
+  animation-delay: 0.3s;
+}
+.sparkle:nth-of-type(3) {
+  top: 80%;
+  left: 85%;
+  animation-delay: 0.7s;
+}
+.sparkle:nth-of-type(4) {
+  top: 90%;
+  left: 20%;
+  animation-delay: 1.2s;
+}
+.sparkle:nth-of-type(5) {
+  top: 50%;
+  left: 50%;
+  animation-delay: 1.5s;
+}
