@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ChatbotButton from "@/components/ChatbotButton";
-import { Analytics } from "@vercel/analytics/next";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,7 +35,7 @@ export default function RootLayout({
         <Navbar />
         <ChatbotButton />
         {children}
-        <Analytics />
+        
       </body>
     </html>
   );
