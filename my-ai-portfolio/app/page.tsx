@@ -42,7 +42,7 @@ export default function HomePage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4">
-      <GlassCard className="w-full max-w-4xl">
+      <GlassCard className="w-full max-w-6xl">
         <div className="p-8 md:p-12">
           {/* --- SECTION 1: HERO / WELCOME --- */}
           <div className="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">

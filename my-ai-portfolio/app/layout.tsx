@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ChatbotButton from "@/components/ChatbotButton";
-
+import ParticleBackground from "@/components/ParticleBackground"; // Import the new background
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,22 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* CRUCIAL: Make sure the 'relative' class is here. 
-      */}
       <body className={`${inter.className} relative`}>
+        <ParticleBackground /> {/* The new interactive background */}
         
-        {/* CRUCIAL: This entire block must exist right after the <body> tag.
-        */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="shape shape1"></div>
-          <div className="shape shape2"></div>
-          <div className="shape shape3"></div>
-          <div className="shape shape4"></div>
-        </div>
-
         <Navbar />
         <ChatbotButton />
-        {children}
+        
+        <main className="pt-32">
+          {children}
+        </main>
         
       </body>
     </html>

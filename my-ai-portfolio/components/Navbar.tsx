@@ -1,87 +1,50 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import { UserCircle, Briefcase, LayoutGrid, Mail } from "lucide-react";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // --- UPDATED NAVIGATION ITEMS HERE ---
   const navItems = [
-    { label: "About", href: "/" },
-    { label: "Experience", href: "/experience" },
-    { label: "Projects", href: "/projects" },
-    { label: "Contact", href: "/contact" },
+    { label: "About", href: "/", icon: <UserCircle size={16} /> },
+    { label: "Experience", href: "/experience", icon: <Briefcase size={16} /> },
+    { label: "Projects", href: "/projects", icon: <LayoutGrid size={16} /> },
+    { label: "Contact", href: "/contact", icon: <Mail size={16} /> },
   ];
 
-  const menuVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
-  };
-
   return (
-    <>
-      <nav
-        className="sticky top-0 z-50 p-4
-                   bg-zinc-900/30 backdrop-blur-lg 
-                   border-b border-zinc-500/30"
-      >
-        <div className="container mx-auto flex justify-between items-center">
-          <Link
-            href="/"
-            className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 to-zinc-400 hover:from-zinc-100 hover:to-zinc-300 transition-colors"
-          >
-            Felix Omondi
-          </Link>
-
-          <div className="hidden md:flex items-center space-x-6 text-lg">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className="text-zinc-300 hover:text-white transition-colors">
-                {item.label}
-              </Link>
-            ))}
-          </div>
-
-          <div className="md:hidden">
-            <button onClick={toggleMenu} aria-label="Toggle menu">
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile Menu Panel */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            variants={menuVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="md:hidden fixed inset-0 h-screen bg-zinc-900/30 backdrop-blur-lg z-40"
-          >
-            <div className="flex flex-col items-center justify-center h-full space-y-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-3xl text-zinc-100 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    <motion.nav
+      className="fixed top-8 left-1/2 -translate-x-1/2 z-50"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
+      <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-zinc-900/50 backdrop-blur-lg shadow-lg border border-zinc-700">
+        {navItems.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`
+                flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors
+                ${
+                  isActive
+                    ? "bg-zinc-700 text-zinc-100"
+                    : "text-zinc-300 hover:bg-zinc-800/50"
+                }
+              `}
+            >
+              {item.icon}
+              <span>{item.label}</span>
+            </Link>
+          );
+        })}
+      </div>
+    </motion.nav>
   );
 }

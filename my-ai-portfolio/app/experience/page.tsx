@@ -100,7 +100,7 @@ export default function ExperiencePage() {
 
   return (
     <main className="min-h-screen p-4 md:p-12 flex justify-center">
-      <GlassCard className="w-full max-w-4xl my-12">
+      <GlassCard className="w-full max-w-5xl my-12">
         <div className="p-8 md:p-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-8 text-zinc-100 flex items-center gap-4">
             <Briefcase size={40} />

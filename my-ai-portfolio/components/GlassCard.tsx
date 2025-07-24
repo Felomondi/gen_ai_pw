@@ -10,12 +10,9 @@ export default function GlassCard({ children, className }: GlassCardProps) {
   return (
     <div
       className={twMerge(
-        // Base styles for the glass effect
-        "bg-zinc-900/30", // Semi-transparent background (dark for contrast)
-        "backdrop-blur-lg", // The core blur effect
-        "border border-zinc-500/30", // A subtle border to catch the light
-        "rounded-2xl", // Nicely rounded corners
-        className // Allows for additional custom classes
+        // I've reduced the background opacity from 50% to 10%
+        "bg-zinc-900/10 backdrop-blur-lg rounded-2xl shadow-lg border border-white/10",
+        className
       )}
     >
       {children}
