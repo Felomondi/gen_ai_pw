@@ -15,7 +15,7 @@ const ParticleBackground = () => {
     let particles: Particle[] = [];
     const particleCount = 70;
     const connectDistance = 120;
-    let mouse = { x: -1000, y: -1000 };
+    const mouse = { x: -1000, y: -1000 };
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
