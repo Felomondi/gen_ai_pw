@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const knowledgeBase = `
   Felix Omondi's Profile:
+  - Hobbies: Soccer, hip hop dancing, anime, reading books, travelling and coding.
   - Education: BSc Computer Science & Math (Statistics) from Vassar College, expected May 2026.
   - Key Skills: Python, React, Next.js, Java, SQL, JavaScript, HTML/CSS, Systems Design, Data Structures, Algorithm Design, UI/UX Design.
   - Current Role: Software Engineer Intern at Morgan Stanley (from June 2025).
