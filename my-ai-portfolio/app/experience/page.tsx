@@ -1,19 +1,25 @@
 "use client";
 
-// We add useState and useEffect to the imports
 import React, { useState, useEffect } from "react";
 import GlassCard from "@/components/GlassCard";
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 
 const experiences = [
-  // ... (Your existing experience data is unchanged)
   {
     role: "Software Engineer Intern",
     company: "Morgan Stanley",
     date: "June 2025 - Present",
     location: "New York, NY",
-    description: "Working on internal trade reporting applications.",
+    // FIX: Changed description to be an object with an intro and bullet points
+    description: {
+      intro: "Developed a key component of an observability platform focused on data quality assurance:",
+      points: [
+        "Architected and built a tracking tool in Python to monitor user data as it moved through our quality-check pipeline, identifying the exact stages where issues occurred.",
+        "Implemented a system to analyze and report the success and failure rates of specific data quality rules, providing crucial insights for both clients and internal developers.",
+        "Designed and developed intuitive monitoring dashboards using Prometheus and Grafana to visualize user process flows and rule performance, which streamlined the debugging process for all stakeholders."
+      ]
+    },
     skills: ["Python", "SQL", "Prometheus.io", "Grafana", "OpenTelemetry"],
   },
   {
@@ -56,14 +62,6 @@ const experiences = [
     description: "Selected as one of 38 software engineers for an intensive workshop. Collaborated with engineers to build a Python-based portfolio manager using Jupyter Notebooks.",
     skills: ["Python", "Jupyter Notebooks"],
   },
-  {
-    role: "College Access Mentor",
-    company: "Equity Group Foundation",
-    date: "May 2022 - Aug 2022",
-    location: "Nairobi, Kenya",
-    description: "Guided high school graduates through college applications, provided SAT preparation, and reviewed essays, helping scholars gain admission to top US universities.",
-    skills: ["Peer Tutoring", "Communication", "Team Leadership", "Community Empowerment"],
-  },
 ];
 
 const listContainerVariants = {
@@ -89,25 +87,18 @@ const lineItemVariants = {
 };
 
 export default function ExperiencePage() {
-  // --- FIX FOR HYDRATION ERROR ---
   const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    // This code runs only in the browser, after the page has loaded
-    setIsClient(true);
-  }, []);
-  // --- END OF FIX ---
+  useEffect(() => { setIsClient(true) }, []);
 
   return (
     <main className="min-h-screen p-4 md:p-12 flex justify-center">
-      <GlassCard className="w-full max-w-5xl my-12">
+      <GlassCard className="w-full max-w-4xl my-12">
         <div className="p-8 md:p-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-8 text-zinc-100 flex items-center gap-4">
             <Briefcase size={40} />
             Work Experience
           </h1>
           
-          {/* We only render the animated list if we are on the client */}
           {isClient && (
             <motion.div className="space-y-8" variants={listContainerVariants} initial="hidden" animate="visible">
               {experiences.map((exp, index) => (
@@ -118,7 +109,23 @@ export default function ExperiencePage() {
                     <p>{exp.date}</p>
                     <p>{exp.location}</p>
                   </motion.div>
-                  <motion.p variants={lineItemVariants} className="mt-2 text-zinc-300">{exp.description}</motion.p>
+                  
+                  {/* FIX: Render description based on its type (string or object) */}
+                  <motion.div variants={lineItemVariants} className="mt-2 text-zinc-300 text-sm">
+                    {typeof exp.description === 'string' ? (
+                      <p>{exp.description}</p>
+                    ) : (
+                      <>
+                        <p>{exp.description.intro}</p>
+                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                          {exp.description.points.map((point, i) => (
+                            <li key={i}>{point}</li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+                  </motion.div>
+
                   <motion.div variants={lineItemVariants} className="mt-3 flex flex-wrap gap-2">
                     {exp.skills.map((skill, sIndex) => (
                       <span key={sIndex} className="bg-zinc-800 text-purple-300 text-sm font-medium px-3 py-1 rounded-full">{skill}</span>

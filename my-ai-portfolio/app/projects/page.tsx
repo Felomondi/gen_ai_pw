@@ -8,8 +8,8 @@ import Link from 'next/link';
 // --- YOUR PROJECTS DATA, ORGANIZED FROM YOUR RESUME ---
 const projects = [
   {
-    title: "LitLore - Android Prototype",
-    description: "An Android app for book discovery that integrates with the Google Books API. Features include user login, dynamic search by title or author, a book details page, and the ability for users to submit text reviews and star ratings.",
+    title: "LitLore - Android App",
+    description: "An Android app for book discovery that integrates with the Google Books API. Features include user login, dynamic search by title or author, a book details page, and the ability for users to submit text reviews and star ratings. It also has a social media aspect where users can follow other users and see their book reviews.",
     tags: ["Java", "Google Books API"],
     githubUrl: "https://github.com/Felomondi/Litlore-android",
     liveUrl: null,
@@ -19,13 +19,6 @@ const projects = [
     description: "Built a robust restaurant-ordering system that improved order processing speed by 40%. Implemented database solutions with SQL to reduce data retrieval time by 25%.",
     tags: ["JavaScript", "HTML", "CSS", "Vue.js", "SQL"],
     githubUrl: "https://github.com/Felomondi/Restaurant_Ordiering_System", 
-    liveUrl: null,
-  },
-  {
-    title: "Course Pre-Registration Algorithm",
-    description: "Developed an advanced algorithm using integer linear programming (ILP) to optimize student course allocations, increasing scheduling efficiency by 35%. Integrated graph theory and topological sorting to manage prerequisites and prevent scheduling conflicts.",
-    tags: ["Java", "Integer Linear Programming", "Graph Theory"],
-    githubUrl: "https://github.com/Felomondi/Course_Pre-registration_Algorithm-",
     liveUrl: null,
   },
   {
