@@ -10,10 +10,10 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const navItems = [
-    { label: "About", href: "/", icon: <UserCircle size={16} /> },
-    { label: "Experience", href: "/experience", icon: <Briefcase size={16} /> },
-    { label: "Projects", href: "/projects", icon: <LayoutGrid size={16} /> },
-    { label: "Contact", href: "/contact", icon: <Mail size={16} /> },
+    { label: "About", href: "/", icon: <UserCircle size={20} /> }, // Slightly larger icons
+    { label: "Experience", href: "/experience", icon: <Briefcase size={20} /> },
+    { label: "Projects", href: "/projects", icon: <LayoutGrid size={20} /> },
+    { label: "Contact", href: "/contact", icon: <Mail size={20} /> },
   ];
 
   return (
@@ -23,7 +23,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-zinc-900/50 backdrop-blur-lg shadow-lg border border-zinc-700">
+      <div className="flex items-center gap-2 sm:gap-4 px-3 py-2 sm:px-4 rounded-full bg-zinc-900/50 backdrop-blur-lg shadow-lg border border-zinc-700">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           return (
@@ -31,7 +31,7 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               className={`
-                flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors
+                flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full text-sm font-medium transition-colors
                 ${
                   isActive
                     ? "bg-zinc-700 text-zinc-100"
@@ -40,7 +40,8 @@ export default function Navbar() {
               `}
             >
               {item.icon}
-              <span>{item.label}</span>
+              {/* This span is hidden on small screens and shown on larger screens */}
+              <span className="hidden sm:inline">{item.label}</span>
             </Link>
           );
         })}
