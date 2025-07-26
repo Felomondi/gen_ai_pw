@@ -15,6 +15,13 @@ const projects = [
     liveUrl: null,
   },
   {
+    title: "LitLore - Website",
+    description: "A website for book discovery that integrates with the Google Books API. Features include user login, dynamic search by title or author, a book details page, and the ability for users to submit text reviews and star ratings. It also has a social media aspect where users can follow other users and see their book reviews.",
+    tags: ["React", "SCSS", "Python", "Docker", "Google Books API"],
+    githubUrl: "https://github.com/Felomondi/Litlore-website",
+    liveUrl: "https://litlore.netlify.app/",
+  },
+  {
     title: "Restaurant Ordering System",
     description: "Built a robust restaurant-ordering system that improved order processing speed by 40%. Implemented database solutions with SQL to reduce data retrieval time by 25%.",
     tags: ["JavaScript", "HTML", "CSS", "Vue.js", "SQL"],
@@ -26,7 +33,7 @@ const projects = [
     description: "Crafted a visually appealing front-end for a hiking app, resulting in a 20% increase in user satisfaction. Designed mock interactive mapping and user journey interfaces to showcase potential offline route tracking capabilities.",
     tags: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
     githubUrl: "https://github.com/Felomondi/Travel_web_UI_UX",
-    liveUrl: null,
+    liveUrl: "https://travel-web-ui-ux.vercel.app/",
     
   },
 ];
