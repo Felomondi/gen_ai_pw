@@ -22,6 +22,22 @@ const experiences = [
     },
     skills: ["Python", "SQL", "Prometheus.io", "Grafana", "OpenTelemetry"],
   },
+
+  {
+    role: "Software Engineer Intern",
+    company: "Amazon",
+    date: "June 2024 - August 2024",
+    location: "New York, NY",
+    // FIX: Changed description to be an object with an intro and bullet points
+    description: {
+      points: [
+        "Developed and implemented new user-facing features for the Android Alexa UI using Java, contributing to a 15% increase in user engagement with core functionalities.",
+        "Collaborated with UX/UI designers and product managers to translate design mockups and wireframes into high-quality, responsive code for the Alexa interface.",
+        "Engineered reusable UI components, which streamlined development for the team and reduced future implementation time by 20%."
+      ]
+    },
+    skills: ["Java"],
+  },
   {
     role: "Web Editor",
     company: "Vassar Student Association",
