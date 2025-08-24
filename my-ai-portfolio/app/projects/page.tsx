@@ -8,6 +8,14 @@ import Link from 'next/link';
 // --- YOUR PROJECTS DATA, ORGANIZED FROM YOUR RESUME ---
 const projects = [
   {
+    title: "SlidesDesk - Presentation Tool",
+    description: "SlidesDeck is a web app that turns long, free-form briefs into structured presentation outlines using the OpenAI API. Features include a FastAPI backend with Pydantic-validated JSON outputs and graceful fallbacks; a React/Tailwind UI with a clean glass look, light/dark mode, and Framer Motion; inline editing of slide titles, talking points, visual suggestions, and speaker notes; per-slide add/remove bullets, a progress indicator, and a “Generate Variations” option to compare 2–3 alternative outlines. The app is containerized and deployed on Railway.",
+    tags: ["Python", "Tailwind CSS", "TypeScript", "FastAPI", "JavaScript", "OpenAI API"],
+    githubUrl: "https://github.com/Felomondi/slidesdeck-frontend",
+    liveUrl: "https://slidesdeck.vercel.app/",
+
+  },
+  {
     title: "LitLore - Android App",
     description: "An Android app for book discovery that integrates with the Google Books API. Features include user login, dynamic search by title or author, a book details page, and the ability for users to submit text reviews and star ratings. It also has a social media aspect where users can follow other users and see their book reviews.",
     tags: ["Java", "Google Books API"],
