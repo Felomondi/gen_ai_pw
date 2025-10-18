@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import ChatbotButton from "@/components/ChatbotButton";
-import ParticleBackground from "@/components/ParticleBackground"; // Import the new background
+import ChatbotButton from "@/components/ChatbotButton";// Import the new background
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} relative`}>
-        <ParticleBackground /> {/* The new interactive background */}
         
         <Navbar />
         <ChatbotButton />
