@@ -93,22 +93,22 @@ export default function Chatbot({ onClose }: ChatbotProps) {
       animate="visible"
       exit="exit"
     >
-      <div className="bg-zinc-900/50 backdrop-blur-xl border border-zinc-700 rounded-2xl shadow-2xl flex flex-col h-[70vh]">
-        <header className="flex items-center justify-between p-4 border-b border-zinc-700">
+      <div className="bg-white/80 backdrop-blur-xl border border-white/20 rounded-xl shadow-lg flex flex-col h-[70vh]">
+        <header className="flex items-center justify-between p-4 border-b border-white/20">
           <div className="flex items-center gap-3">
-            <div className="w-4 h-4 rounded-full bg-green-400 animate-pulse" />
-            <h2 className="font-bold text-lg text-zinc-100">Felix AI Assistant</h2>
+            <div className="w-3 h-3 rounded-full bg-green-500" />
+            <h2 className="font-semibold text-lg text-gray-900">Ask Felix</h2>
           </div>
           <button
             onClick={onClose}
-            className="text-zinc-400 hover:text-white transition-colors"
+            className="text-gray-400 hover:text-gray-600 transition-colors"
             aria-label="Close chat"
           >
-            <X size={24} />
+            <X size={20} />
           </button>
         </header>
 
-        <div className="flex-grow p-4 space-y-4 overflow-y-auto">
+        <div className="flex-grow p-4 space-y-4 overflow-y-auto bg-gray-50/50 backdrop-blur-sm">
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -117,31 +117,31 @@ export default function Chatbot({ onClose }: ChatbotProps) {
               }`}
             >
               {msg.role === "model" && (
-                <Bot className="w-6 h-6 text-purple-400 flex-shrink-0" />
+                <Bot className="w-5 h-5 text-gray-600 flex-shrink-0 mt-1" />
               )}
               <div
-                className={`p-3 rounded-lg max-w-xs ${
+                className={`p-3 rounded-lg max-w-xs backdrop-blur-sm ${
                   msg.role === "user"
-                    ? "bg-blue-600/50 text-white"
-                    : "bg-purple-900/50 text-zinc-200"
+                    ? "bg-gray-900/90 text-white"
+                    : "bg-white/80 text-gray-900 border border-white/30"
                 }`}
               >
-                <p className="text-sm whitespace-pre-wrap">{msg.parts[0].text}</p>
+                <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.parts[0].text}</p>
               </div>
               {msg.role === "user" && (
-                <User className="w-6 h-6 text-blue-300 flex-shrink-0" />
+                <User className="w-5 h-5 text-gray-600 flex-shrink-0 mt-1" />
               )}
             </div>
           ))}
 
           {isLoading && (
             <div className="flex items-start gap-3 justify-start">
-              <Bot className="w-6 h-6 text-purple-400 flex-shrink-0" />
-              <div className="p-3 rounded-lg bg-purple-900/50 text-zinc-200">
+              <Bot className="w-5 h-5 text-gray-600 flex-shrink-0 mt-1" />
+              <div className="p-3 rounded-lg bg-white/80 text-gray-900 border border-white/30 backdrop-blur-sm">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-zinc-400 rounded-full animate-pulse delay-0" />
-                  <span className="w-2 h-2 bg-zinc-400 rounded-full animate-pulse delay-150" />
-                  <span className="w-2 h-2 bg-zinc-400 rounded-full animate-pulse delay-300" />
+                  <span className="w-2 h-2 bg-gray-400 rounded-full animate-pulse delay-0" />
+                  <span className="w-2 h-2 bg-gray-400 rounded-full animate-pulse delay-150" />
+                  <span className="w-2 h-2 bg-gray-400 rounded-full animate-pulse delay-300" />
                 </div>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function Chatbot({ onClose }: ChatbotProps) {
           <div ref={messagesEndRef} />
         </div>
 
-        <footer className="p-4 border-t border-zinc-700">
+        <footer className="p-4 border-t border-white/20 bg-white/80 backdrop-blur-sm">
           <form onSubmit={handleSubmit} className="flex items-center gap-2">
             <Input
               type="text"
@@ -158,10 +158,10 @@ export default function Chatbot({ onClose }: ChatbotProps) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={isLoading}
-              className="flex-grow bg-zinc-800/50 border-zinc-700 text-white"
+              className="flex-grow bg-white/90 backdrop-blur-sm"
             />
             <Button type="submit" size="icon" aria-label="Send message" disabled={isLoading}>
-              <Send size={20} />
+              <Send size={18} />
             </Button>
           </form>
         </footer>

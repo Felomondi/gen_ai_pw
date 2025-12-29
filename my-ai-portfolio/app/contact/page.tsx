@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import GlassCard from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { Send, Loader, CheckCircle, AlertCircle } from "lucide-react";
 
 export default function ContactPage() {
@@ -37,42 +37,85 @@ export default function ContactPage() {
     }
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } },
   };
 
   return (
-    <main className="min-h-screen p-4 md:p-12 flex items-center justify-center">
-      <GlassCard className="w-full max-w-2xl">
-        <div className="p-8 md:p-16">
+    <main className="min-h-screen bg-gray-50 flex items-center justify-center py-16">
+      <div className="container mx-auto max-w-2xl px-4">
+        <motion.div
+          className="rounded-xl border border-gray-200 bg-white p-8 md:p-12 shadow-sm"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {isClient && (
-            <motion.div variants={containerVariants} initial="hidden" animate="visible">
-              <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500">
+            <>
+              <motion.h1
+                variants={itemVariants}
+                className="text-3xl md:text-4xl font-bold mb-3 text-center text-gray-900"
+              >
                 Get In Touch
               </motion.h1>
-              <motion.p variants={itemVariants} className="text-zinc-300 text-center mb-10">
+              <motion.p
+                variants={itemVariants}
+                className="text-gray-600 text-center mb-10"
+              >
                 Have a question or want to work together? Drop me a message!
               </motion.p>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <motion.div variants={itemVariants}>
-                  <label htmlFor="name" className="block text-sm font-medium text-zinc-200 mb-2">Your Name</label>
-                  <Input id="name" name="name" type="text" required value={formData.name} onChange={handleChange} placeholder="Felix Omondi" className="bg-zinc-800/50 border-zinc-700 text-white" />
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Name
+                  </label>
+                  <Input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Felix Omondi"
+                    className="bg-white"
+                  />
                 </motion.div>
                 <motion.div variants={itemVariants}>
-                  <label htmlFor="email" className="block text-sm font-medium text-zinc-200 mb-2">Your Email</label>
-                  <Input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} placeholder="you@example.com" className="bg-zinc-800/50 border-zinc-700 text-white" />
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Email
+                  </label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="you@example.com"
+                    className="bg-white"
+                  />
                 </motion.div>
                 <motion.div variants={itemVariants}>
-                  <label htmlFor="message" className="block text-sm font-medium text-zinc-200 mb-2">Message</label>
-                  {/* THE FIX IS HERE */}
-                  <Textarea id="message" name="message" required value={formData.message} onChange={handleChange} placeholder="Let&apos;s build something amazing..." rows={5} className="bg-zinc-800/50 border-zinc-700 text-white" />
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    Message
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Let's build something amazing..."
+                    rows={5}
+                    className="bg-white"
+                  />
                 </motion.div>
                 <motion.div variants={itemVariants}>
                   <Button type="submit" className="w-full" disabled={status === 'loading'}>
@@ -80,21 +123,39 @@ export default function ContactPage() {
                     {status === 'success' && <CheckCircle className="mr-2 h-4 w-4" />}
                     {status === 'error' && <AlertCircle className="mr-2 h-4 w-4" />}
                     {status === 'idle' && <Send className="mr-2 h-4 w-4" />}
-                    {status === 'loading' ? 'Sending...' : status === 'success' ? 'Message Sent!' : status === 'error' ? 'Try Again' : 'Send Message'}
+                    {status === 'loading'
+                      ? 'Sending...'
+                      : status === 'success'
+                        ? 'Message Sent!'
+                        : status === 'error'
+                          ? 'Try Again'
+                          : 'Send Message'}
                   </Button>
                 </motion.div>
               </form>
-              
+
               {status === 'success' && (
-                  <p className="text-green-400 text-center mt-4">Thank you for your message! I&apos;ll get back to you soon.</p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-green-600 text-center mt-4 text-sm"
+                >
+                  Thank you for your message! I&apos;ll get back to you soon.
+                </motion.p>
               )}
               {status === 'error' && (
-                  <p className="text-red-400 text-center mt-4">Something went wrong. Please try again later.</p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-red-600 text-center mt-4 text-sm"
+                >
+                  Something went wrong. Please try again later.
+                </motion.p>
               )}
-            </motion.div>
+            </>
           )}
-        </div>
-      </GlassCard>
+        </motion.div>
+      </div>
     </main>
   );
 }

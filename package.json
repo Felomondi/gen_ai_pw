@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "lint": "cd my-ai-portfolio && pnpm lint"
+  },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
     "framer-motion": "^12.19.2",

@@ -44,28 +44,22 @@ export default function ChatbotButton() {
       <AnimatePresence>
         {!isChatOpen && (
           <motion.div
-            className="fixed top-1/2 -translate-y-1/2 right-6 z-[60] flex flex-col items-center gap-2"
+            className="fixed bottom-6 right-6 z-[60] flex flex-col items-center gap-2"
             variants={buttonContainerVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
-            <p className="text-sm font-medium text-zinc-200 bg-zinc-900/50 backdrop-blur-sm px-3 py-1 rounded-full border border-zinc-700">
-              Chat with Felix AI
-            </p>
             <button 
               onClick={() => setIsChatOpen(true)}
-              className="sparkle-button relative w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
-              aria-label="Open AI Chat"
+              className="w-14 h-14 rounded-full bg-gray-900/90 backdrop-blur-md text-white flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all border border-white/20"
+              aria-label="Open Ask Felix"
             >
-              <div className="sparkle"></div>
-              <div className="sparkle"></div>
-              <div className="sparkle"></div>
-              <div className="sparkle"></div>
-              <div className="sparkle"></div>
-              
-              <MessageSquare size={32} className="text-white" />
+              <MessageSquare size={24} />
             </button>
+            <p className="text-xs font-medium text-gray-700 bg-white/80 backdrop-blur-md px-2 py-1 rounded-md border border-white/30 shadow-sm">
+              Ask Felix
+            </p>
           </motion.div>
         )}
       </AnimatePresence>

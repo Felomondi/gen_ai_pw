@@ -23,7 +23,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <div className="flex items-center gap-2 sm:gap-4 px-3 py-2 sm:px-4 rounded-full bg-zinc-900/50 backdrop-blur-lg shadow-lg border border-zinc-700">
+      <div className="flex items-center gap-2 sm:gap-4 px-3 py-2 sm:px-4 rounded-full bg-white/80 backdrop-blur-md shadow-md border border-gray-200">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           return (
@@ -34,8 +34,8 @@ export default function Navbar() {
                 flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full text-sm font-medium transition-colors
                 ${
                   isActive
-                    ? "bg-zinc-700 text-zinc-100"
-                    : "text-zinc-300 hover:bg-zinc-800/50"
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-700 hover:bg-gray-100"
                 }
               `}
             >

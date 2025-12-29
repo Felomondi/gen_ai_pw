@@ -5,22 +5,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import GlassCard from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
-import { Download, Rocket, GraduationCap, Github, Linkedin, BadgeCheck } from "lucide-react";
+import { Download, Rocket, GraduationCap, Github, Linkedin } from "lucide-react";
 
 // ---------------------------------------------
 // Animation Variants
 // ---------------------------------------------
 const sectionVariants: Variants = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.45,
+      duration: 0.4,
       ease: [0.22, 1, 0.36, 1],
-      staggerChildren: 0.12,
+      staggerChildren: 0.1,
     },
   },
 };
@@ -30,7 +29,7 @@ const itemVariants: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -87,181 +86,187 @@ const skills = {
 // ---------------------------------------------
 // Small UI bits
 // ---------------------------------------------
-const StackBadge: React.FC<React.PropsWithChildren<{ title?: string }>> = ({ children }) => (
+const StackBadge: React.FC<React.PropsWithChildren> = ({ children }) => (
   <motion.span
     variants={itemVariants}
-    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-zinc-200 backdrop-blur hover:bg-white/10 transition"
+    className="inline-flex items-center rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 shadow-sm transition-colors hover:border-gray-300 hover:bg-gray-50"
   >
-    <BadgeCheck className="h-4 w-4" />
     {children}
   </motion.span>
 );
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-transparent">
-      <div className="container mx-auto flex max-w-7xl flex-col items-center justify-center px-4 py-12 md:py-20">
-        <GlassCard className="w-full border border-white/10 bg-transparent backdrop-blur-xl">
-          <div className="p-6 md:p-12">
-            {/* ---------------- HERO ---------------- */}
-            <div className="flex flex-col items-center gap-10 md:flex-row md:items-start">
-              {/* Avatar */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="relative"
-              >
-                <div className="group relative h-44 w-44 overflow-hidden rounded-full border border-white/20 p-[3px] md:h-56 md:w-56">
-                  <div className="absolute inset-0 -z-10 animate-pulse rounded-full bg-gradient-to-tr from-purple-500 via-pink-500 to-teal-400 opacity-70 blur-xl" />
-                  <Image
-                    src="/images/ai_pic.png"
-                    alt="Felix Omondi"
-                    width={224}
-                    height={224}
-                    className="h-full w-full rounded-full object-cover shadow-xl ring-1 ring-white/20"
-                    priority
-                  />
-                </div>
-              </motion.div>
-
-              {/* Intro */}
-              <motion.div
-                variants={sectionVariants}
-                initial="hidden"
-                animate="visible"
-                className="flex flex-1 flex-col items-center md:items-start"
-              >
-                <motion.p variants={itemVariants} className="text-lg md:text-xl text-zinc-300">
-                  Hello, I&apos;m Felix Omondi.
-                </motion.p>
-                <motion.h1
-                  variants={itemVariants}
-                  className="mt-2 bg-gradient-to-r from-purple-400 via-pink-500 to-rose-500 bg-clip-text text-center text-4xl font-bold tracking-tight text-transparent md:text-left md:text-5xl"
-                >
-                  Welcome to my digital space.
-                </motion.h1>
-                <motion.p variants={itemVariants} className="mt-4 max-w-2xl text-center text-zinc-400 md:text-left">
-                  I&apos;m a rising senior at Vassar College studying Computer Science & Math. I build thoughtful
-                  software across the stack with a growing focus on AI/ML and delightful user experiences.
-                </motion.p>
-
-                <motion.div variants={itemVariants} className="mt-6 flex flex-wrap items-center gap-3">
-                  <Button asChild size="sm" className="shadow-md">
-                    <Link href="/projects">
-                      <Rocket className="mr-2 h-4 w-4" /> Explore My Work
-                    </Link>
-                  </Button>
-                  <Button asChild size="sm" variant="secondary" className="shadow-md">
-                    <a href="/Felix_Omondi_Resume.pdf" download>
-                      <Download className="mr-2 h-4 w-4" /> My Resume
-                    </a>
-                  </Button>
-                  <Button asChild size="sm" variant="secondary" className="shadow-md">
-                    <a
-                      href="https://github.com/Felomondi"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Felix Omondi GitHub"
-                    >
-                      <Github className="mr-2 h-4 w-4" /> GitHub
-                    </a>
-                  </Button>
-                  <Button asChild size="sm" variant="secondary" className="shadow-md">
-                    <a
-                      href="https://www.linkedin.com/in/felomondi/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Felix Omondi LinkedIn"
-                    >
-                      <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
-                    </a>
-                  </Button>
-                </motion.div>
-              </motion.div>
+    <main className="min-h-screen w-full bg-gray-50">
+      <div className="container mx-auto max-w-5xl px-4 py-16 md:py-24">
+        {/* ---------------- HERO ---------------- */}
+        <motion.div
+          variants={sectionVariants}
+          initial="hidden"
+          animate="visible"
+          className="mb-20 flex flex-col items-center gap-12 md:flex-row md:items-start md:gap-16"
+        >
+          {/* Avatar */}
+          <motion.div
+            variants={itemVariants}
+            className="relative shrink-0"
+          >
+            <div className="relative h-40 w-40 overflow-hidden rounded-2xl shadow-lg md:h-48 md:w-48">
+              <Image
+                src="/images/ai_pic.png"
+                alt="Felix Omondi"
+                width={192}
+                height={192}
+                className="h-full w-full object-cover"
+                priority
+              />
             </div>
+          </motion.div>
 
-            {/* Divider */}
-            <div className="my-8 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+          {/* Intro */}
+          <div className="flex flex-1 flex-col items-center text-center md:items-start md:text-left">
+            <motion.p variants={itemVariants} className="text-base text-gray-600 md:text-lg">
+              Hello, I&apos;m Felix Omondi.
+            </motion.p>
+            <motion.h1
+              variants={itemVariants}
+              className="mt-3 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl"
+            >
+              Software Developer & Student
+            </motion.h1>
+            <motion.p
+              variants={itemVariants}
+              className="mt-4 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg"
+            >
+              I&apos;m a rising senior at Vassar College studying Computer Science & Math. I build thoughtful
+              software across the stack with a growing focus on AI/ML and delightful user experiences.
+            </motion.p>
 
-            {/* ---------------- SKILLS ---------------- */}
-            <motion.section variants={sectionVariants} initial="hidden" animate="visible" className="space-y-6">
-              <motion.h2
-                variants={itemVariants}
-                className="flex items-center gap-3 bg-gradient-to-r from-blue-300 via-teal-300 to-emerald-300 bg-clip-text text-3xl font-bold text-transparent"
-              >
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-teal-500/20 ring-1 ring-teal-400/40">
-                  <BadgeCheck className="h-5 w-5 text-teal-200" />
-                </span>
-                Languages & Tech Stack
-              </motion.h2>
-
-              {/* Languages */}
-              <motion.div variants={itemVariants} className="space-y-2">
-                <p className="text-sm uppercase tracking-wider text-zinc-400">Languages</p>
-                <div className="flex flex-wrap gap-2">
-                  {skills.languages.map((s) => (
-                    <StackBadge key={s}>{s}</StackBadge>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Frameworks */}
-              <motion.div variants={itemVariants} className="space-y-2">
-                <p className="text-sm uppercase tracking-wider text-zinc-400">Frameworks & Libraries</p>
-                <div className="flex flex-wrap gap-2">
-                  {skills.frameworks.map((s) => (
-                    <StackBadge key={s}>{s}</StackBadge>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Tools */}
-              <motion.div variants={itemVariants} className="space-y-2">
-                <p className="text-sm uppercase tracking-wider text-zinc-400">Tools & Platforms</p>
-                <div className="flex flex-wrap gap-2">
-                  {skills.tools.map((s) => (
-                    <StackBadge key={s}>{s}</StackBadge>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.section>
-
-            {/* Divider */}
-            <div className="my-8 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-
-            {/* ---------------- EDUCATION ---------------- */}
-            <motion.section variants={sectionVariants} initial="hidden" animate="visible" className="space-y-4">
-              <motion.h2
-                variants={itemVariants}
-                className="flex items-center gap-3 bg-gradient-to-r from-blue-400 via-teal-400 to-green-500 bg-clip-text text-3xl font-bold text-transparent"
-              >
-                <GraduationCap className="h-7 w-7" /> Education
-              </motion.h2>
-
-              <motion.div variants={itemVariants} className="rounded-xl border border-white/10 bg-white/5 p-5">
-                <h3 className="text-xl font-semibold text-zinc-100">{education.degree}</h3>
-                <div className="mt-1 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-zinc-400">
-                  <p className="font-medium text-zinc-300">{education.college}</p>
-                  <p>{education.expected}</p>
-                </div>
-                <div className="mt-4">
-                  <p className="text-sm uppercase tracking-wider text-zinc-400">Relevant Coursework</p>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {education.courses.map((c) => (
-                      <span
-                        key={c}
-                        className="rounded-full border border-teal-500/40 bg-teal-600/15 px-3 py-1 text-sm text-teal-200"
-                      >
-                        {c}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </motion.section>
+            <motion.div
+              variants={itemVariants}
+              className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start"
+            >
+              <Button asChild size="default">
+                <Link href="/projects">
+                  <Rocket className="mr-2 h-4 w-4" /> View Projects
+                </Link>
+              </Button>
+              <Button asChild size="default" variant="outline">
+                <a href="/Felix_Omondi_Resume.pdf" download>
+                  <Download className="mr-2 h-4 w-4" /> Resume
+                </a>
+              </Button>
+              <Button asChild size="default" variant="outline">
+                <a
+                  href="https://github.com/Felomondi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Felix Omondi GitHub"
+                >
+                  <Github className="mr-2 h-4 w-4" /> GitHub
+                </a>
+              </Button>
+              <Button asChild size="default" variant="outline">
+                <a
+                  href="https://www.linkedin.com/in/felomondi/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Felix Omondi LinkedIn"
+                >
+                  <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
+                </a>
+              </Button>
+            </motion.div>
           </div>
-        </GlassCard>
+        </motion.div>
+
+        {/* ---------------- SKILLS ---------------- */}
+        <motion.section
+          variants={sectionVariants}
+          initial="hidden"
+          animate="visible"
+          className="mb-20 space-y-8"
+        >
+          <motion.h2
+            variants={itemVariants}
+            className="text-2xl font-semibold text-gray-900 md:text-3xl"
+          >
+            Skills & Technologies
+          </motion.h2>
+
+          {/* Languages */}
+          <motion.div variants={itemVariants} className="space-y-3">
+            <p className="text-sm font-medium uppercase tracking-wide text-gray-500">Languages</p>
+            <div className="flex flex-wrap gap-2">
+              {skills.languages.map((s) => (
+                <StackBadge key={s}>{s}</StackBadge>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Frameworks */}
+          <motion.div variants={itemVariants} className="space-y-3">
+            <p className="text-sm font-medium uppercase tracking-wide text-gray-500">
+              Frameworks & Libraries
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {skills.frameworks.map((s) => (
+                <StackBadge key={s}>{s}</StackBadge>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Tools */}
+          <motion.div variants={itemVariants} className="space-y-3">
+            <p className="text-sm font-medium uppercase tracking-wide text-gray-500">Tools & Platforms</p>
+            <div className="flex flex-wrap gap-2">
+              {skills.tools.map((s) => (
+                <StackBadge key={s}>{s}</StackBadge>
+              ))}
+            </div>
+          </motion.div>
+        </motion.section>
+
+        {/* ---------------- EDUCATION ---------------- */}
+        <motion.section
+          variants={sectionVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-6"
+        >
+          <motion.h2
+            variants={itemVariants}
+            className="flex items-center gap-3 text-2xl font-semibold text-gray-900 md:text-3xl"
+          >
+            <GraduationCap className="h-6 w-6 text-gray-700" /> Education
+          </motion.h2>
+
+          <motion.div
+            variants={itemVariants}
+            className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
+          >
+            <h3 className="text-xl font-semibold text-gray-900">{education.degree}</h3>
+            <div className="mt-2 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-gray-600">
+              <p className="font-medium">{education.college}</p>
+              <p>{education.expected}</p>
+            </div>
+            <div className="mt-6">
+              <p className="text-sm font-medium uppercase tracking-wide text-gray-500">
+                Relevant Coursework
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {education.courses.map((c) => (
+                  <span
+                    key={c}
+                    className="rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-sm text-gray-700"
+                  >
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </motion.section>
       </div>
     </main>
   );

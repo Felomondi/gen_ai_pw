@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import GlassCard from "@/components/GlassCard";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { Briefcase } from "lucide-react";
 
 const experiences = [
@@ -11,7 +11,6 @@ const experiences = [
     company: "Morgan Stanley",
     date: "June 2025 - Present",
     location: "New York, NY",
-    // FIX: Changed description to be an object with an intro and bullet points
     description: {
       intro: "Developed a key component of an observability platform focused on data quality assurance:",
       points: [
@@ -28,7 +27,6 @@ const experiences = [
     company: "Amazon",
     date: "June 2024 - August 2024",
     location: "New York, NY",
-    // FIX: Changed description to be an object with an intro and bullet points
     description: {
       points: [
         "Developed and implemented new user-facing features for the Android Alexa UI using Java, contributing to a 15% increase in user engagement with core functionalities.",
@@ -80,26 +78,21 @@ const experiences = [
   },
 ];
 
-const listContainerVariants = {
+const listContainerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.4 },
-  },
-};
-
-const cardItemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
     transition: { staggerChildren: 0.15 },
   },
 };
 
-const lineItemVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0 },
+const cardItemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
 export default function ExperiencePage() {
@@ -107,52 +100,70 @@ export default function ExperiencePage() {
   useEffect(() => { setIsClient(true) }, []);
 
   return (
-    <main className="min-h-screen p-4 md:p-12 flex justify-center">
-      <GlassCard className="w-full max-w-4xl my-12">
-        <div className="p-8 md:p-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-zinc-100 flex items-center gap-4">
-            <Briefcase size={40} />
-            Work Experience
-          </h1>
-          
-          {isClient && (
-            <motion.div className="space-y-8" variants={listContainerVariants} initial="hidden" animate="visible">
-              {experiences.map((exp, index) => (
-                <motion.div key={index} variants={cardItemVariants} className="border-l-2 border-purple-400 pl-6">
-                  <motion.h2 variants={lineItemVariants} className="text-2xl font-bold text-zinc-100">{exp.role}</motion.h2>
-                  <motion.div variants={lineItemVariants} className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-zinc-400">
-                    <p className="font-semibold text-lg text-zinc-300">{exp.company}</p>
+    <main className="min-h-screen bg-gray-50">
+      <div className="container mx-auto max-w-4xl px-4 py-16 md:py-24">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="text-3xl md:text-4xl font-bold mb-12 text-gray-900 flex items-center gap-3"
+        >
+          <Briefcase className="h-8 w-8 text-gray-700" />
+          Work Experience
+        </motion.h1>
+        
+        {isClient && (
+          <motion.div
+            className="space-y-8"
+            variants={listContainerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                variants={cardItemVariants}
+                className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="border-l-4 border-gray-900 pl-4">
+                  <h2 className="text-xl font-semibold text-gray-900 mb-2">{exp.role}</h2>
+                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-gray-600 mb-4">
+                    <p className="font-medium">{exp.company}</p>
                     <p>{exp.date}</p>
                     <p>{exp.location}</p>
-                  </motion.div>
+                  </div>
                   
-                  {/* FIX: Render description based on its type (string or object) */}
-                  <motion.div variants={lineItemVariants} className="mt-2 text-zinc-300 text-sm">
+                  <div className="text-gray-700 text-sm leading-relaxed">
                     {typeof exp.description === 'string' ? (
                       <p>{exp.description}</p>
                     ) : (
                       <>
-                        <p>{exp.description.intro}</p>
-                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                        {exp.description.intro && <p className="mb-2">{exp.description.intro}</p>}
+                        <ul className="list-disc pl-5 space-y-1.5">
                           {exp.description.points.map((point, i) => (
                             <li key={i}>{point}</li>
                           ))}
                         </ul>
                       </>
                     )}
-                  </motion.div>
+                  </div>
 
-                  <motion.div variants={lineItemVariants} className="mt-3 flex flex-wrap gap-2">
+                  <div className="mt-4 flex flex-wrap gap-2">
                     {exp.skills.map((skill, sIndex) => (
-                      <span key={sIndex} className="bg-zinc-800 text-purple-300 text-sm font-medium px-3 py-1 rounded-full">{skill}</span>
+                      <span
+                        key={sIndex}
+                        className="rounded-md border border-gray-200 bg-gray-50 px-3 py-1 text-sm font-medium text-gray-700"
+                      >
+                        {skill}
+                      </span>
                     ))}
-                  </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-        </div>
-      </GlassCard>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </div>
     </main>
   );
 }
