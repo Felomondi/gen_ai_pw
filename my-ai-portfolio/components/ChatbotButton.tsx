@@ -8,16 +8,13 @@ import { MessageSquare } from 'lucide-react';
 import Chatbot from './Chatbot';
 
 export default function ChatbotButton() {
-  const pathname = usePathname();
   const [isChatOpen, setIsChatOpen] = useState(false);
-  
-  // --- FIX FOR HYDRATION ERROR ---
   const [isClient, setIsClient] = useState(false);
+  const pathname = usePathname();
+  
   useEffect(() => {
-    // This code runs only in the browser, after the page has loaded
     setIsClient(true);
   }, []);
-  // --- END OF FIX ---
 
   const buttonContainerVariants = {
     hidden: { opacity: 0, y: 50, scale: 0.8 },
@@ -33,8 +30,13 @@ export default function ChatbotButton() {
     },
   };
 
-  // If we are on the contact page, or not on the client yet, render nothing.
-  if (pathname === '/contact' || !isClient) {
+  // Don't render until client-side hydration is complete
+  if (!isClient) {
+    return null;
+  }
+
+  // Don't show on contact page
+  if (pathname === '/contact') {
     return null;
   }
 
