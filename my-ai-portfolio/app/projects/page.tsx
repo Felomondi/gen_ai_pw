@@ -3,12 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { Github, Link as LinkIcon, Layers } from 'lucide-react';
+import { Github, Link as LinkIcon, Layers, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 const projects = [
   {
     title: "CoTeacher AI – Course RAG Assistant",
+    slug: "coteacher-ai",
     description:
       "A full-stack platform where instructors upload course materials and students chat with a course-specific AI. Features owner/TA/student roles, Supabase Storage + Postgres, server-side RAG indexing (PDF/DOCX/PPTX parsing, chunking, OpenAI embeddings), per-course vector search, and a ChatGPT-style UI with integrity guardrails.",
     tags: [
@@ -24,14 +25,17 @@ const projects = [
     ],
     githubUrl: null,
     liveUrl: null,
+    hasDetailPage: true,
   },
   {
     title: "SlidesDesk - Presentation Tool",
+    slug: "slidesdesk",
     description:
       "SlidesDeck is a web app that turns long, free-form briefs into structured presentation outlines using the OpenAI API. Features include a FastAPI backend with Pydantic-validated JSON outputs and graceful fallbacks; a React/Tailwind UI with a clean glass look, light/dark mode, and Framer Motion; inline editing of slide titles, talking points, visual suggestions, and speaker notes; per-slide add/remove bullets, a progress indicator, and a \"Generate Variations\" option to compare 2–3 alternative outlines. The app is containerized and deployed on Railway.",
     tags: ["Python", "Tailwind CSS", "TypeScript", "FastAPI", "JavaScript", "OpenAI API"],
     githubUrl: "https://github.com/Felomondi/slidesdeck-frontend",
     liveUrl: "https://slidesdeck.vercel.app/",
+    hasDetailPage: true,
   },
   {
     title: "LitLore - Android App",
@@ -127,9 +131,20 @@ export default function ProjectsPage() {
               <motion.div key={index} variants={itemVariants}>
                 <div className="rounded-lg border-2 border-gray-900 bg-white h-full flex flex-col overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <div className="p-5 flex-grow space-y-3">
-                    <h2 className="font-mono text-lg text-gray-900">
-                      {project.title}
-                    </h2>
+                    <div className="flex items-start justify-between gap-3">
+                      <h2 className="font-mono text-lg text-gray-900">
+                        {project.title}
+                      </h2>
+                      {project.hasDetailPage && (
+                        <Link
+                          href={`/projects/${project.slug}`}
+                          className="font-mono text-xs text-gray-900 hover:text-emerald-600 transition-colors flex items-center gap-1 font-medium"
+                        >
+                          <span>read more</span>
+                          <ArrowRight size={12} />
+                        </Link>
+                      )}
+                    </div>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {project.description}
                     </p>
@@ -146,7 +161,7 @@ export default function ProjectsPage() {
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center gap-4 pt-2">
+                    <div className="flex items-center gap-4 pt-2 flex-wrap">
                       {project.githubUrl && (
                         <Link
                           href={project.githubUrl}

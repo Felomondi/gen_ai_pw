@@ -70,29 +70,27 @@ export default function ContactPage() {
           initial="hidden"
           animate="visible"
         >
-          {isClient && (
-            <>
-              <motion.div variants={itemVariants} className="mb-4">
-                <CodeComment>contact</CodeComment>
-              </motion.div>
-              <motion.div variants={itemVariants} className="flex items-center gap-3 mb-2">
-                <Mail className="h-6 w-6 text-emerald-600" />
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 font-mono">
-                  <span className="text-emerald-600">$</span> contact
-                </h1>
-              </motion.div>
-              <motion.div variants={itemVariants} className="mb-8">
-                <TerminalPrompt>send_message()</TerminalPrompt>
-                <p className="mt-2 text-gray-600 text-sm">
-                  Have a question or want to collaborate? Fill out the form below.
-                </p>
-              </motion.div>
+          <motion.div variants={itemVariants} className="mb-4">
+            <CodeComment>contact</CodeComment>
+          </motion.div>
+          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-2">
+            <Mail className="h-6 w-6 text-emerald-600" />
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 font-mono">
+              <span className="text-emerald-600">$</span> contact
+            </h1>
+          </motion.div>
+          <motion.div variants={itemVariants} className="mb-8">
+            <TerminalPrompt>send_message()</TerminalPrompt>
+            <p className="mt-2 text-gray-700 text-sm">
+              Have a question or want to collaborate? Fill out the form below.
+            </p>
+          </motion.div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
                 <motion.div variants={itemVariants}>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="font-mono text-xs text-emerald-600">const</span>
-                    <label htmlFor="name" className="font-mono text-sm text-gray-700">
+                    <label htmlFor="name" className="font-mono text-sm text-gray-900 font-medium">
                       name
                     </label>
                     <span className="font-mono text-xs text-gray-400">=</span>
@@ -104,14 +102,15 @@ export default function ContactPage() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="&quot;Your Name&quot;"
-                    className="bg-white border-2 border-gray-900 font-mono focus:border-emerald-600"
+                    placeholder='"Your Name"'
+                    className="!bg-white !border-2 !border-gray-900 font-mono !text-gray-900 !placeholder:text-gray-400 focus:!border-emerald-600"
+                    style={{ color: '#111827', backgroundColor: '#ffffff' }}
                   />
                 </motion.div>
                 <motion.div variants={itemVariants}>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="font-mono text-xs text-emerald-600">const</span>
-                    <label htmlFor="email" className="font-mono text-sm text-gray-700">
+                    <label htmlFor="email" className="font-mono text-sm text-gray-900 font-medium">
                       email
                     </label>
                     <span className="font-mono text-xs text-gray-400">=</span>
@@ -123,14 +122,15 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="&quot;you@example.com&quot;"
-                    className="bg-white border-2 border-gray-900 font-mono focus:border-emerald-600"
+                    placeholder='"you@example.com"'
+                    className="!bg-white !border-2 !border-gray-900 font-mono !text-gray-900 !placeholder:text-gray-400 focus:!border-emerald-600"
+                    style={{ color: '#111827', backgroundColor: '#ffffff' }}
                   />
                 </motion.div>
                 <motion.div variants={itemVariants}>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="font-mono text-xs text-emerald-600">const</span>
-                    <label htmlFor="message" className="font-mono text-sm text-gray-700">
+                    <label htmlFor="message" className="font-mono text-sm text-gray-900 font-medium">
                       message
                     </label>
                     <span className="font-mono text-xs text-gray-400">=</span>
@@ -141,9 +141,10 @@ export default function ContactPage() {
                     required
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="&quot;Let's build something amazing...&quot;"
+                    placeholder='&quot;Let&apos;s build something amazing...&quot;'
                     rows={5}
-                    className="bg-white border-2 border-gray-900 font-mono focus:border-emerald-600 resize-none"
+                    className="!bg-white !border-2 !border-gray-900 font-mono !text-gray-900 !placeholder:text-gray-400 focus:!border-emerald-600 resize-none"
+                    style={{ color: '#111827', backgroundColor: '#ffffff' }}
                   />
                 </motion.div>
                 <motion.div variants={itemVariants}>
@@ -195,8 +196,6 @@ export default function ContactPage() {
                   </div>
                 </motion.div>
               )}
-            </>
-          )}
         </motion.div>
       </div>
     </main>
