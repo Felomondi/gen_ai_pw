@@ -16,6 +16,11 @@ body {
   color: #111827;
 }
 
+/* Monospace font for tech aesthetic */
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
 /* Keyframes for the sparkle animation on chat button*/
 @keyframes sparkle-animation {
   0%, 100% {

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Download, Rocket, GraduationCap, Github, Linkedin } from "lucide-react";
+import { Download, GraduationCap, Github, Linkedin, Terminal } from "lucide-react";
 
 // ---------------------------------------------
 // Animation Variants
@@ -51,54 +51,27 @@ const education = {
   ],
 };
 
-const skills = {
-  languages: [
-    "Python",
-    "Java",
-    "JavaScript",
-    "TypeScript",
-    "C++",
-    "Kotlin",
-    "OCaml",
-    "SQL",
-    "MySQL",
-    "HTML",
-    "CSS",
-  ],
-  frameworks: ["React", "Next.js", "Vue.js", "Android", "Django", ".NET"],
-  tools: [
-    "Docker",
-    "Linux",
-    "Git",
-    "Figma",
-    "REST API",
-    "AWS",
-    "Prometheus",
-    "Grafana",
-    "OpenTelemetry",
-    "Scrapy",
-    "Firebase",
-    "PostgreSQL",
-    "Azure",
-  ],
-};
-
 // ---------------------------------------------
 // Small UI bits
 // ---------------------------------------------
-const StackBadge: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <motion.span
-    variants={itemVariants}
-    className="inline-flex items-center rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 shadow-sm transition-colors hover:border-gray-300 hover:bg-gray-50"
-  >
-    {children}
-  </motion.span>
+const TerminalPrompt: React.FC<React.PropsWithChildren> = ({ children }) => (
+  <div className="font-mono text-sm">
+    <span className="text-emerald-600">$</span>{" "}
+    <span className="text-gray-700">{children}</span>
+  </div>
+);
+
+const CodeComment: React.FC<React.PropsWithChildren> = ({ children }) => (
+  <span className="font-mono text-xs text-gray-400">// {children}</span>
 );
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen w-full bg-gray-50">
-      <div className="container mx-auto max-w-5xl px-4 py-16 md:py-24">
+    <main className="min-h-screen w-full bg-gray-50 relative overflow-hidden">
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+      
+      <div className="container mx-auto max-w-5xl px-4 py-16 md:py-24 relative z-10">
         {/* ---------------- HERO ---------------- */}
         <motion.div
           variants={sectionVariants}
@@ -106,12 +79,13 @@ export default function HomePage() {
           animate="visible"
           className="mb-20 flex flex-col items-center gap-12 md:flex-row md:items-start md:gap-16"
         >
-          {/* Avatar */}
+          {/* Avatar with tech border */}
           <motion.div
             variants={itemVariants}
-            className="relative shrink-0"
+            className="relative shrink-0 group"
           >
-            <div className="relative h-40 w-40 overflow-hidden rounded-2xl shadow-lg md:h-48 md:w-48">
+            <div className="relative h-40 w-40 overflow-hidden rounded-lg border-2 border-gray-900 shadow-lg md:h-48 md:w-48">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <Image
                 src="/images/ai_pic.png"
                 alt="Felix Omondi"
@@ -121,108 +95,156 @@ export default function HomePage() {
                 priority
               />
             </div>
+            <div className="absolute -bottom-2 -right-2 h-6 w-6 border-2 border-gray-900 bg-emerald-400" />
           </motion.div>
 
-          {/* Intro */}
+          {/* Intro with terminal aesthetic */}
           <div className="flex flex-1 flex-col items-center text-center md:items-start md:text-left">
-            <motion.p variants={itemVariants} className="text-base text-gray-600 md:text-lg">
-              Hello, I&apos;m Felix Omondi.
-            </motion.p>
+            <motion.div variants={itemVariants} className="mb-2">
+              <CodeComment>// About</CodeComment>
+            </motion.div>
             <motion.h1
               variants={itemVariants}
-              className="mt-3 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl"
+              className="mt-2 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl font-mono"
             >
-              Software Developer & Student
+              <span className="text-emerald-600">&lt;</span>
+              <span className="text-gray-900">Felix Omondi</span>
+              <span className="text-emerald-600"> /&gt;</span>
             </motion.h1>
-            <motion.p
-              variants={itemVariants}
-              className="mt-4 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg"
-            >
-              I&apos;m a rising senior at Vassar College studying Computer Science & Math. I build thoughtful
-              software across the stack with a growing focus on AI/ML and delightful user experiences.
-            </motion.p>
+            <motion.div variants={itemVariants} className="mt-4 space-y-2">
+              <TerminalPrompt>whoami</TerminalPrompt>
+              <p className="mt-2 max-w-2xl text-base leading-relaxed text-gray-700 md:text-lg">
+                Software Developer & Student at{" "}
+                <span className="font-mono text-emerald-600">Vassar College</span>
+              </p>
+            </motion.div>
+            <motion.div variants={itemVariants} className="mt-4 space-y-2">
+              <TerminalPrompt>cat bio.txt</TerminalPrompt>
+              <p className="mt-2 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
+                Senior studying Computer Science & Math. Building thoughtful software across the stack 
+                with a growing focus on <span className="font-mono text-gray-900">AI/ML</span> and delightful user experiences.
+              </p>
+            </motion.div>
 
             <motion.div
               variants={itemVariants}
               className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start"
             >
-              <Button asChild size="default">
+              <Button asChild size="default" className="font-mono bg-gray-900 text-white hover:bg-gray-800">
                 <Link href="/projects">
-                  <Rocket className="mr-2 h-4 w-4" /> View Projects
+                  <Terminal className="mr-2 h-4 w-4" /> ./projects
                 </Link>
               </Button>
-              <Button asChild size="default" variant="outline">
+              <Button asChild size="default" variant="outline" className="font-mono border-gray-900">
                 <a href="/Felix_Omondi_Resume.pdf" download>
-                  <Download className="mr-2 h-4 w-4" /> Resume
+                  <Download className="mr-2 h-4 w-4" /> resume.pdf
                 </a>
               </Button>
-              <Button asChild size="default" variant="outline">
+              <Button asChild size="default" variant="outline" className="font-mono border-gray-900">
                 <a
                   href="https://github.com/Felomondi"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Felix Omondi GitHub"
                 >
-                  <Github className="mr-2 h-4 w-4" /> GitHub
+                  <Github className="mr-2 h-4 w-4" /> github
                 </a>
               </Button>
-              <Button asChild size="default" variant="outline">
+              <Button asChild size="default" variant="outline" className="font-mono border-gray-900">
                 <a
                   href="https://www.linkedin.com/in/felomondi/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Felix Omondi LinkedIn"
                 >
-                  <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
+                  <Linkedin className="mr-2 h-4 w-4" /> linkedin
                 </a>
               </Button>
             </motion.div>
           </div>
         </motion.div>
 
-        {/* ---------------- SKILLS ---------------- */}
+        {/* ---------------- SYSTEM SNAPSHOT ---------------- */}
         <motion.section
           variants={sectionVariants}
           initial="hidden"
           animate="visible"
-          className="mb-20 space-y-8"
+          className="mb-16 grid gap-6 md:grid-cols-3"
         >
-          <motion.h2
+          <motion.div
             variants={itemVariants}
-            className="text-2xl font-semibold text-gray-900 md:text-3xl"
+            className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
           >
-            Skills & Technologies
-          </motion.h2>
-
-          {/* Languages */}
-          <motion.div variants={itemVariants} className="space-y-3">
-            <p className="text-sm font-medium uppercase tracking-wide text-gray-500">Languages</p>
-            <div className="flex flex-wrap gap-2">
-              {skills.languages.map((s) => (
-                <StackBadge key={s}>{s}</StackBadge>
-              ))}
+            <CodeComment>// now</CodeComment>
+            <div className="mt-3 space-y-1 font-mono text-sm text-gray-800">
+              <div>
+                <span className="text-emerald-600">role</span>
+                <span className="text-gray-400">: </span>
+                <span>"Software Engineer Intern"</span>
+              </div>
+              <div>
+                <span className="text-emerald-600">location</span>
+                <span className="text-gray-400">: </span>
+                <span>"New York, NY"</span>
+              </div>
+              <div>
+                <span className="text-emerald-600">focus</span>
+                <span className="text-gray-400">: </span>
+                <span>"full‑stack systems & AI Agents"</span>
+              </div>
             </div>
           </motion.div>
 
-          {/* Frameworks */}
-          <motion.div variants={itemVariants} className="space-y-3">
-            <p className="text-sm font-medium uppercase tracking-wide text-gray-500">
-              Frameworks & Libraries
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {skills.frameworks.map((s) => (
-                <StackBadge key={s}>{s}</StackBadge>
-              ))}
+          <motion.div
+            variants={itemVariants}
+            className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+          >
+            <CodeComment>// current stack and tools</CodeComment>
+            <div className="mt-3 font-mono text-sm text-gray-800 space-y-1">
+              <div>
+                <span className="text-emerald-600">frontend</span>
+                <span className="text-gray-400">: </span>
+                <span>"Next.js, React, TypeScript, HTML, CSS, JavaScript"</span>
+              </div>
+              <div>
+                <span className="text-emerald-600">backend</span>
+                <span className="text-gray-400">: </span>
+                <span>"Node, Python, SQL, REST APIs, AWS, Docker, Linux, Git, Prometheus, Grafana, OpenTelemetry, Django, .NET, Firebase, PostgreSQL, Azure"</span>
+              </div>
+              <div>
+                <span className="text-emerald-600">Mobile</span>
+                <span className="text-gray-400">: </span>
+                <span>"Kotlin, Java"</span>
+              </div>
+              <div>
+                <span className="text-emerald-600">ml</span>
+                <span className="text-gray-400">: </span>
+                <span>"RAG, LLM tooling"</span>
+              </div>
             </div>
           </motion.div>
 
-          {/* Tools */}
-          <motion.div variants={itemVariants} className="space-y-3">
-            <p className="text-sm font-medium uppercase tracking-wide text-gray-500">Tools & Platforms</p>
-            <div className="flex flex-wrap gap-2">
-              {skills.tools.map((s) => (
-                <StackBadge key={s}>{s}</StackBadge>
-              ))}
+          <motion.div
+            variants={itemVariants}
+            className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+          >
+            <CodeComment>// status</CodeComment>
+            <div className="mt-3 font-mono text-sm text-gray-800 space-y-1">
+              <div>
+                <span className="text-emerald-600">open_to</span>
+                <span className="text-gray-400">: </span>
+                <span>"internships & collabs"</span>
+              </div>
+              <div>
+                <span className="text-emerald-600">timezone</span>
+                <span className="text-gray-400">: </span>
+                <span>"ET (GMT‑5)"</span>
+              </div>
+              <div>
+                <span className="text-emerald-600">coffee</span>
+                <span className="text-gray-400">: </span>
+                <span>"always"</span>
+              </div>
             </div>
           </motion.div>
         </motion.section>
@@ -234,35 +256,57 @@ export default function HomePage() {
           animate="visible"
           className="space-y-6"
         >
-          <motion.h2
-            variants={itemVariants}
-            className="flex items-center gap-3 text-2xl font-semibold text-gray-900 md:text-3xl"
-          >
-            <GraduationCap className="h-6 w-6 text-gray-700" /> Education
-          </motion.h2>
+          <motion.div variants={itemVariants} className="flex items-center gap-3">
+            <GraduationCap className="h-6 w-6 text-emerald-600" />
+            <h2 className="text-2xl font-semibold text-gray-900 md:text-3xl font-mono">
+              <span className="text-emerald-600">$</span> education
+            </h2>
+          </motion.div>
 
           <motion.div
             variants={itemVariants}
-            className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
+            className="rounded-lg border-2 border-gray-900 bg-white p-6 shadow-sm"
           >
-            <h3 className="text-xl font-semibold text-gray-900">{education.degree}</h3>
-            <div className="mt-2 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-gray-600">
-              <p className="font-medium">{education.college}</p>
-              <p>{education.expected}</p>
-            </div>
-            <div className="mt-6">
-              <p className="text-sm font-medium uppercase tracking-wide text-gray-500">
-                Relevant Coursework
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {education.courses.map((c) => (
-                  <span
-                    key={c}
-                    className="rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-sm text-gray-700"
-                  >
-                    {c}
-                  </span>
-                ))}
+            <div className="space-y-4">
+              <div>
+                <TerminalPrompt>cat education.json</TerminalPrompt>
+                <div className="mt-3 font-mono text-sm">
+                  <div className="text-gray-400">{"{"}</div>
+                  <div className="pl-4 space-y-1">
+                    <div>
+                      <span className="text-emerald-600">&quot;degree&quot;</span>
+                      <span className="text-gray-400">: </span>
+                      <span className="text-gray-700">&quot;{education.degree}&quot;</span>
+                    </div>
+                    <div>
+                      <span className="text-emerald-600">&quot;institution&quot;</span>
+                      <span className="text-gray-400">: </span>
+                      <span className="text-gray-700">&quot;{education.college}&quot;</span>
+                    </div>
+                    <div>
+                      <span className="text-emerald-600">&quot;expected&quot;</span>
+                      <span className="text-gray-400">: </span>
+                      <span className="text-gray-700">&quot;{education.expected}&quot;</span>
+                    </div>
+                  </div>
+                  <div className="text-gray-400">{"}"}</div>
+                </div>
+              </div>
+              
+              <div className="pt-4 border-t border-gray-200">
+                <p className="text-sm font-medium uppercase tracking-wide text-gray-500 mb-3 font-mono">
+                  <CodeComment>// Relevant Coursework</CodeComment>
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {education.courses.map((c) => (
+                    <span
+                      key={c}
+                      className="rounded border border-gray-300 bg-gray-50 px-3 py-1.5 text-sm text-gray-700 font-mono hover:border-emerald-400 hover:bg-emerald-50 transition-colors"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>

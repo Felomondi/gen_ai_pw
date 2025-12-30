@@ -77,6 +77,17 @@ const itemVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } },
 };
 
+const TerminalPrompt: React.FC<React.PropsWithChildren> = ({ children }) => (
+  <div className="font-mono text-sm">
+    <span className="text-emerald-600">$</span>{' '}
+    <span className="text-gray-700">{children}</span>
+  </div>
+);
+
+const CodeComment: React.FC<React.PropsWithChildren> = ({ children }) => (
+  <span className="font-mono text-xs text-gray-400">// {children}</span>
+);
+
 export default function ProjectsPage() {
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
@@ -84,17 +95,26 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <div className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
-        <motion.h1
+    <main className="min-h-screen bg-gray-50 relative overflow-hidden">
+      {/* subtle grid to match home */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+
+      <div className="container mx-auto max-w-7xl px-4 py-16 md:py-24 relative z-10">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-3xl md:text-4xl font-bold mb-12 text-gray-900 flex items-center gap-3"
+          className="mb-10 space-y-3"
         >
-          <Layers className="h-8 w-8 text-gray-700" />
-          Projects
-        </motion.h1>
+          <CodeComment>// projects</CodeComment>
+          <div className="flex items-center gap-3">
+            <Layers className="h-7 w-7 text-emerald-600" />
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 font-mono">
+              <span className="text-emerald-600">$</span> projects
+            </h1>
+          </div>
+          <TerminalPrompt>ls ./projects</TerminalPrompt>
+        </motion.div>
 
         {isClient && (
           <motion.div
@@ -105,34 +125,37 @@ export default function ProjectsPage() {
           >
             {projects.map((project, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <div className="rounded-xl border border-gray-200 bg-white shadow-sm h-full flex flex-col overflow-hidden hover:shadow-md transition-shadow">
-                  <div className="p-6 flex-grow">
-                    <h2 className="text-xl font-semibold text-gray-900 mb-3">{project.title}</h2>
-                    <p className="text-gray-600 mb-4 text-sm leading-relaxed flex-grow">
+                <div className="rounded-lg border-2 border-gray-900 bg-white h-full flex flex-col overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <div className="p-5 flex-grow space-y-3">
+                    <h2 className="font-mono text-lg text-gray-900">
+                      {project.title}
+                    </h2>
+                    <p className="text-gray-600 text-sm leading-relaxed">
                       {project.description}
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 border-t border-gray-100">
-                    <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="p-5 bg-gray-50 border-t border-gray-200 space-y-3">
+                    <CodeComment>// stack</CodeComment>
+                    <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, tIndex) => (
                         <span
                           key={tIndex}
-                          className="rounded-md border border-gray-200 bg-white px-2.5 py-1 text-xs font-medium text-gray-700"
+                          className="rounded border border-gray-300 bg-white px-2.5 py-1 text-xs font-mono text-gray-800 hover:border-emerald-400 hover:bg-emerald-50 transition-colors"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 pt-2">
                       {project.githubUrl && (
                         <Link
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-2 text-sm font-medium"
+                          className="font-mono text-xs text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-2"
                         >
-                          <Github size={18} />
-                          <span>Code</span>
+                          <Github size={16} />
+                          <span>open code</span>
                         </Link>
                       )}
                       {project.liveUrl && (
@@ -140,10 +163,10 @@ export default function ProjectsPage() {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-2 text-sm font-medium"
+                          className="font-mono text-xs text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-2"
                         >
-                          <LinkIcon size={18} />
-                          <span>Live Demo</span>
+                          <LinkIcon size={16} />
+                          <span>open demo</span>
                         </Link>
                       )}
                     </div>
