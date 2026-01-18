@@ -93,22 +93,22 @@ export default function Chatbot({ onClose }: ChatbotProps) {
       animate="visible"
       exit="exit"
     >
-      <div className="bg-white/80 backdrop-blur-xl border border-white/20 rounded-xl shadow-lg flex flex-col h-[70vh]">
-        <header className="flex items-center justify-between p-4 border-b border-white/20">
+      <div className="bg-slate-900/90 backdrop-blur-xl border border-slate-700/40 rounded-xl shadow-lg flex flex-col h-[70vh]">
+        <header className="flex items-center justify-between p-4 border-b border-slate-700/40">
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-green-500" />
-            <h2 className="font-semibold text-lg text-gray-900">Ask Felix</h2>
+            <h2 className="font-semibold text-lg text-slate-100">Ask Felix</h2>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
+            className="text-slate-400 hover:text-slate-200 transition-colors"
             aria-label="Close chat"
           >
             <X size={20} />
           </button>
         </header>
 
-        <div className="flex-grow p-4 space-y-4 overflow-y-auto bg-gray-50/50 backdrop-blur-sm">
+        <div className="flex-grow p-4 space-y-4 overflow-y-auto bg-slate-950/50 backdrop-blur-sm">
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -117,31 +117,31 @@ export default function Chatbot({ onClose }: ChatbotProps) {
               }`}
             >
               {msg.role === "model" && (
-                <Bot className="w-5 h-5 text-gray-600 flex-shrink-0 mt-1" />
+                <Bot className="w-5 h-5 text-slate-400 flex-shrink-0 mt-1" />
               )}
               <div
                 className={`p-3 rounded-lg max-w-xs backdrop-blur-sm ${
                   msg.role === "user"
-                    ? "bg-gray-900/90 text-white"
-                    : "bg-white/80 text-gray-900 border border-white/30"
+                    ? "bg-emerald-500 text-slate-950"
+                    : "bg-slate-900/80 text-slate-100 border border-slate-700/40"
                 }`}
               >
                 <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.parts[0].text}</p>
               </div>
               {msg.role === "user" && (
-                <User className="w-5 h-5 text-gray-600 flex-shrink-0 mt-1" />
+                <User className="w-5 h-5 text-slate-400 flex-shrink-0 mt-1" />
               )}
             </div>
           ))}
 
           {isLoading && (
             <div className="flex items-start gap-3 justify-start">
-              <Bot className="w-5 h-5 text-gray-600 flex-shrink-0 mt-1" />
-              <div className="p-3 rounded-lg bg-white/80 text-gray-900 border border-white/30 backdrop-blur-sm">
+              <Bot className="w-5 h-5 text-slate-400 flex-shrink-0 mt-1" />
+              <div className="p-3 rounded-lg bg-slate-900/80 text-slate-100 border border-slate-700/40 backdrop-blur-sm">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-gray-400 rounded-full animate-pulse delay-0" />
-                  <span className="w-2 h-2 bg-gray-400 rounded-full animate-pulse delay-150" />
-                  <span className="w-2 h-2 bg-gray-400 rounded-full animate-pulse delay-300" />
+                  <span className="w-2 h-2 bg-slate-400 rounded-full animate-pulse delay-0" />
+                  <span className="w-2 h-2 bg-slate-400 rounded-full animate-pulse delay-150" />
+                  <span className="w-2 h-2 bg-slate-400 rounded-full animate-pulse delay-300" />
                 </div>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function Chatbot({ onClose }: ChatbotProps) {
           <div ref={messagesEndRef} />
         </div>
 
-        <footer className="p-4 border-t border-white/20 bg-white/80 backdrop-blur-sm">
+        <footer className="p-4 border-t border-slate-700/40 bg-slate-900/80 backdrop-blur-sm">
           <form onSubmit={handleSubmit} className="flex items-center gap-2">
             <Input
               type="text"
@@ -158,7 +158,7 @@ export default function Chatbot({ onClose }: ChatbotProps) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={isLoading}
-              className="flex-grow bg-white/90 backdrop-blur-sm"
+              className="flex-grow bg-slate-900/60 border-slate-700/40 text-slate-100 placeholder:text-slate-500"
             />
             <Button type="submit" size="icon" aria-label="Send message" disabled={isLoading}>
               <Send size={18} />

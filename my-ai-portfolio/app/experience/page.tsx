@@ -97,13 +97,13 @@ const cardItemVariants: Variants = {
 
 const TerminalPrompt: React.FC<React.PropsWithChildren> = ({ children }) => (
   <div className="font-mono text-sm">
-    <span className="text-emerald-600">$</span>{" "}
-    <span className="text-gray-700">{children}</span>
+    <span className="text-emerald-400">$</span>{" "}
+    <span className="text-slate-300">{children}</span>
   </div>
 );
 
 const CodeComment: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <span className="font-mono text-xs text-gray-400">// {children}</span>
+  <span className="font-mono text-xs text-slate-500">// {children}</span>
 );
 
 export default function ExperiencePage() {
@@ -111,9 +111,9 @@ export default function ExperiencePage() {
   useEffect(() => { setIsClient(true) }, []);
 
   return (
-    <main className="min-h-screen bg-gray-50 relative overflow-hidden">
+    <main className="min-h-screen bg-slate-950 relative overflow-hidden">
       {/* subtle grid to match home */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
 
       <div className="container mx-auto max-w-4xl px-4 py-16 md:py-24 relative z-10">
         <motion.div
@@ -123,10 +123,10 @@ export default function ExperiencePage() {
           className="mb-10 space-y-3"
         >
           <CodeComment>// experience</CodeComment>
-          <div className="flex items-center gap-3">
-            <Briefcase className="h-7 w-7 text-emerald-600" />
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 font-mono">
-              <span className="text-emerald-600">$</span> experience
+              <div className="flex items-center gap-3">
+                <Briefcase className="h-7 w-7 text-emerald-400" />
+                <h1 className="text-3xl md:text-4xl font-bold text-slate-100 font-mono">
+                  <span className="text-emerald-400">$</span> experience
             </h1>
           </div>
           <TerminalPrompt>cat experience.log</TerminalPrompt>
@@ -143,26 +143,26 @@ export default function ExperiencePage() {
               <motion.div
                 key={index}
                 variants={cardItemVariants}
-                className="rounded-lg border-2 border-gray-900 bg-white p-5 shadow-sm hover:shadow-md transition-shadow"
+                    className="rounded-lg border-2 border-slate-700 bg-slate-900 p-5 shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="space-y-3">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <h2 className="font-mono text-lg md:text-xl text-gray-900">
+                        <h2 className="font-mono text-lg md:text-xl text-slate-100">
                       {exp.role}
                     </h2>
-                    <span className="font-mono text-xs text-gray-500">
+                        <span className="font-mono text-xs text-slate-500">
                       {exp.date}
                     </span>
                   </div>
-                  <div className="flex flex-wrap items-center gap-3 text-sm font-mono text-gray-700">
-                    <span className="px-2 py-0.5 rounded border border-gray-300 bg-gray-50">
+                      <div className="flex flex-wrap items-center gap-3 text-sm font-mono text-slate-300">
+                        <span className="px-2 py-0.5 rounded border border-slate-700 bg-slate-900">
                       {exp.company}
                     </span>
-                    <span className="text-gray-400">·</span>
+                        <span className="text-slate-500">·</span>
                     <span>{exp.location}</span>
                   </div>
 
-                  <div className="mt-3 text-gray-700 text-sm leading-relaxed space-y-1.5">
+                      <div className="mt-3 text-slate-300 text-sm leading-relaxed space-y-1.5">
                     {typeof exp.description === 'string' ? (
                       <p>{exp.description}</p>
                     ) : (
@@ -185,7 +185,7 @@ export default function ExperiencePage() {
                       {exp.skills.map((skill, sIndex) => (
                         <span
                           key={sIndex}
-                          className="rounded border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-mono text-gray-800 hover:border-emerald-400 hover:bg-emerald-50 transition-colors"
+                              className="rounded border border-slate-700 bg-slate-900 px-3 py-1 text-xs font-mono text-slate-200 hover:border-emerald-400 hover:bg-emerald-500/10 transition-colors"
                         >
                           {skill}
                         </span>
