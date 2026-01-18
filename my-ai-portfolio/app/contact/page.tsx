@@ -59,10 +59,11 @@ const CodeComment: React.FC<React.PropsWithChildren> = ({ children }) => (
     <main className="min-h-screen bg-slate-950 relative overflow-hidden flex items-center justify-center py-16">
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+      <div className="absolute inset-0 noise-overlay opacity-25" />
       
       <div className="container mx-auto max-w-2xl px-4 relative z-10">
         <motion.div
-          className="rounded-lg border-2 border-slate-700 bg-slate-900 p-8 md:p-12 shadow-sm"
+          className="rounded-lg border-2 border-slate-700/90 bg-slate-900/90 p-8 md:p-12 ring-1 ring-white/5 shadow-[0_12px_34px_-18px_rgba(0,0,0,0.85)]"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -83,6 +84,8 @@ const CodeComment: React.FC<React.PropsWithChildren> = ({ children }) => (
             </p>
           </motion.div>
 
+          <div className="mb-8 h-px bg-gradient-to-r from-transparent via-slate-700/60 to-transparent" />
+
           <form onSubmit={handleSubmit} className="space-y-6">
                 <motion.div variants={itemVariants}>
                   <div className="flex items-center gap-2 mb-2">
@@ -100,7 +103,7 @@ const CodeComment: React.FC<React.PropsWithChildren> = ({ children }) => (
                     value={formData.name}
                     onChange={handleChange}
                     placeholder='"Your Name"'
-                className="!bg-slate-900 !border-2 !border-slate-700 font-mono !text-slate-100 !placeholder:text-slate-500 focus:!border-emerald-400"
+                className="!bg-slate-900 !border-2 !border-slate-700 font-mono !text-slate-100 !placeholder:text-slate-500 focus:!border-emerald-400 focus:!ring-1 focus:!ring-emerald-500/30"
                 style={{ color: '#e2e8f0', backgroundColor: '#0f172a' }}
                   />
                 </motion.div>
@@ -120,7 +123,7 @@ const CodeComment: React.FC<React.PropsWithChildren> = ({ children }) => (
                     value={formData.email}
                     onChange={handleChange}
                     placeholder='"you@example.com"'
-                className="!bg-slate-900 !border-2 !border-slate-700 font-mono !text-slate-100 !placeholder:text-slate-500 focus:!border-emerald-400"
+                className="!bg-slate-900 !border-2 !border-slate-700 font-mono !text-slate-100 !placeholder:text-slate-500 focus:!border-emerald-400 focus:!ring-1 focus:!ring-emerald-500/30"
                 style={{ color: '#e2e8f0', backgroundColor: '#0f172a' }}
                   />
                 </motion.div>
@@ -140,7 +143,7 @@ const CodeComment: React.FC<React.PropsWithChildren> = ({ children }) => (
                     onChange={handleChange}
                     placeholder='&quot;Let&apos;s build something amazing...&quot;'
                     rows={5}
-                className="!bg-slate-900 !border-2 !border-slate-700 font-mono !text-slate-100 !placeholder:text-slate-500 focus:!border-emerald-400 resize-none"
+                className="!bg-slate-900 !border-2 !border-slate-700 font-mono !text-slate-100 !placeholder:text-slate-500 focus:!border-emerald-400 focus:!ring-1 focus:!ring-emerald-500/30 resize-none"
                 style={{ color: '#e2e8f0', backgroundColor: '#0f172a' }}
                   />
                 </motion.div>

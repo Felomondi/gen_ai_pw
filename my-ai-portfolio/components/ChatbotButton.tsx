@@ -52,16 +52,17 @@ export default function ChatbotButton() {
             animate="visible"
             exit="exit"
           >
-            <button 
-              onClick={() => setIsChatOpen(true)}
-                  className="w-14 h-14 rounded-full bg-slate-900/90 backdrop-blur-md text-slate-100 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all border border-slate-700/40"
-              aria-label="Open Ask Felix"
-            >
-              <MessageSquare size={24} />
-            </button>
-                <p className="text-xs font-medium text-slate-200 bg-slate-900/80 backdrop-blur-md px-2 py-1 rounded-md border border-slate-700/40 shadow-sm">
-              Ask Felix
-            </p>
+                <button
+                  onClick={() => setIsChatOpen(true)}
+                  className="relative w-14 h-14 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center ring-2 ring-emerald-400/40 shadow-[0_18px_45px_-18px_rgba(16,185,129,0.35)] hover:shadow-[0_22px_55px_-18px_rgba(16,185,129,0.45)] hover:scale-105 transition-all border border-emerald-300/40 chat-glow"
+                  aria-label="Open Ask Felix"
+                >
+                  <span className="absolute -inset-2 rounded-full border border-emerald-400/25 blur-[2px]" />
+                  <MessageSquare size={24} />
+                </button>
+                <p className="text-xs font-semibold text-emerald-100 bg-emerald-500/20 backdrop-blur-md px-2.5 py-1 rounded-md border border-emerald-400/30 shadow-sm">
+                  Ask Felix
+                </p>
           </motion.div>
         )}
       </AnimatePresence>

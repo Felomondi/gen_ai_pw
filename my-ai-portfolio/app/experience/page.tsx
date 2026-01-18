@@ -114,6 +114,7 @@ export default function ExperiencePage() {
     <main className="min-h-screen bg-slate-950 relative overflow-hidden">
       {/* subtle grid to match home */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+      <div className="absolute inset-0 noise-overlay opacity-25" />
 
       <div className="container mx-auto max-w-4xl px-4 py-16 md:py-24 relative z-10">
         <motion.div
@@ -132,7 +133,9 @@ export default function ExperiencePage() {
           <TerminalPrompt>cat experience.log</TerminalPrompt>
         </motion.div>
         
-        {isClient && (
+            <div className="my-8 h-px bg-gradient-to-r from-transparent via-slate-700/60 to-transparent" />
+
+            {isClient && (
           <motion.div
             className="space-y-6"
             variants={listContainerVariants}
@@ -143,7 +146,7 @@ export default function ExperiencePage() {
               <motion.div
                 key={index}
                 variants={cardItemVariants}
-                    className="rounded-lg border-2 border-slate-700 bg-slate-900 p-5 shadow-sm hover:shadow-md transition-shadow"
+                    className="rounded-lg border-2 border-slate-700/90 bg-slate-900/90 p-5 ring-1 ring-white/5 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40"
               >
                 <div className="space-y-3">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">

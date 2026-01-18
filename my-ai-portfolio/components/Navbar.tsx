@@ -23,7 +23,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
-      <div className="flex items-center gap-3 rounded-lg border-2 border-slate-700 bg-slate-900/90 px-4 py-2 shadow-sm">
+      <div className="flex items-center gap-3 rounded-lg border-2 border-slate-700/90 bg-slate-900/90 px-4 py-2 backdrop-blur-md ring-1 ring-white/5 shadow-[0_12px_34px_-18px_rgba(0,0,0,0.85)]">
         {/* Logo / prompt */}
         <div className="hidden md:flex items-center gap-2 border-r border-slate-700 pr-3">
           <Terminal className="h-4 w-4 text-emerald-400" />
@@ -48,7 +48,7 @@ export default function Navbar() {
                 }`}
               >
                 {item.icon}
-                <span className="hidden xs:inline">{item.label}</span>
+                <span>{item.label}</span>
               </Link>
             );
           })}

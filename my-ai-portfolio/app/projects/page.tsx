@@ -102,6 +102,7 @@ export default function ProjectsPage() {
     <main className="min-h-screen bg-slate-950 relative overflow-hidden">
       {/* subtle grid to match home */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+      <div className="absolute inset-0 noise-overlay opacity-25" />
 
       <div className="container mx-auto max-w-7xl px-4 py-16 md:py-24 relative z-10">
         <motion.div
@@ -120,6 +121,8 @@ export default function ProjectsPage() {
           <TerminalPrompt>ls ./projects</TerminalPrompt>
         </motion.div>
 
+        <div className="my-8 h-px bg-gradient-to-r from-transparent via-slate-700/60 to-transparent" />
+
         {isClient && (
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -129,7 +132,7 @@ export default function ProjectsPage() {
           >
             {projects.map((project, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <div className="rounded-lg border-2 border-slate-700 bg-slate-900 h-full flex flex-col overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <div className="rounded-lg border-2 border-slate-700/90 bg-slate-900/90 h-full flex flex-col overflow-hidden ring-1 ring-white/5 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40">
                   <div className="p-5 flex-grow space-y-3">
                     <div className="flex items-start justify-between gap-3">
                       <h2 className="font-mono text-lg text-slate-100">
@@ -149,7 +152,7 @@ export default function ProjectsPage() {
                       {project.description}
                     </p>
                   </div>
-                  <div className="p-5 bg-slate-900 border-t border-slate-800 space-y-3">
+                  <div className="p-5 bg-slate-950/40 border-t border-slate-800/70 space-y-3">
                     <CodeComment>// stack</CodeComment>
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, tIndex) => (

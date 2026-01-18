@@ -93,7 +93,7 @@ export default function Chatbot({ onClose }: ChatbotProps) {
       animate="visible"
       exit="exit"
     >
-      <div className="bg-slate-900/90 backdrop-blur-xl border border-slate-700/40 rounded-xl shadow-lg flex flex-col h-[70vh]">
+      <div className="bg-slate-900/90 backdrop-blur-xl border border-slate-700/40 rounded-xl ring-1 ring-white/5 shadow-[0_16px_40px_-22px_rgba(0,0,0,0.9)] flex flex-col h-[70vh]">
         <header className="flex items-center justify-between p-4 border-b border-slate-700/40">
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-green-500" />
