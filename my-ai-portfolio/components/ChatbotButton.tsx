@@ -45,8 +45,8 @@ export default function ChatbotButton() {
       {/* AnimatePresence for the floating button */}
       <AnimatePresence>
         {!isChatOpen && (
-          <motion.div
-            className="fixed bottom-6 right-6 z-[60] flex flex-col items-center gap-2"
+              <motion.div
+                className="fixed bottom-6 right-6 z-[60] flex flex-col items-center gap-2"
             variants={buttonContainerVariants}
             initial="hidden"
             animate="visible"
@@ -54,12 +54,12 @@ export default function ChatbotButton() {
           >
             <button 
               onClick={() => setIsChatOpen(true)}
-              className="w-14 h-14 rounded-full bg-gray-900/90 backdrop-blur-md text-white flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all border border-white/20"
+                  className="w-14 h-14 rounded-full bg-slate-900/90 backdrop-blur-md text-slate-100 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all border border-slate-700/40"
               aria-label="Open Ask Felix"
             >
               <MessageSquare size={24} />
             </button>
-            <p className="text-xs font-medium text-gray-700 bg-white/80 backdrop-blur-md px-2 py-1 rounded-md border border-white/30 shadow-sm">
+                <p className="text-xs font-medium text-slate-200 bg-slate-900/80 backdrop-blur-md px-2 py-1 rounded-md border border-slate-700/40 shadow-sm">
               Ask Felix
             </p>
           </motion.div>

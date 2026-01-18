@@ -96,13 +96,13 @@ const projectDetails: Record<string, {
 
 const TerminalPrompt: React.FC<React.PropsWithChildren> = ({ children }) => (
   <div className="font-mono text-sm">
-    <span className="text-emerald-600">$</span>{" "}
-    <span className="text-gray-700">{children}</span>
+    <span className="text-emerald-400">$</span>{" "}
+    <span className="text-slate-300">{children}</span>
   </div>
 );
 
 const CodeComment: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <span className="font-mono text-xs text-gray-400">// {children}</span>
+  <span className="font-mono text-xs text-slate-500">// {children}</span>
 );
 
 export default function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -111,10 +111,10 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
 
   if (!project) {
     return (
-      <main className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <main className="min-h-screen bg-slate-950 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-mono text-gray-900 mb-4">Project not found</h1>
-          <Link href="/projects" className="text-emerald-600 hover:underline font-mono">
+          <h1 className="text-2xl font-mono text-slate-100 mb-4">Project not found</h1>
+          <Link href="/projects" className="text-emerald-400 hover:underline font-mono">
             ← Back to projects
           </Link>
         </div>
@@ -123,9 +123,9 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 relative overflow-hidden">
+    <main className="min-h-screen bg-slate-950 relative overflow-hidden">
       {/* Subtle grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
 
       <div className="container mx-auto max-w-4xl px-4 py-16 md:py-24 relative z-10">
         {/* Back button */}
@@ -135,7 +135,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
           className="mb-8"
         >
           <Link href="/projects">
-            <Button variant="outline" className="font-mono border-gray-900">
+            <Button variant="outline" className="font-mono border-slate-700 text-slate-200 hover:bg-slate-900">
               <ArrowLeft className="mr-2 h-4 w-4" />
               back
             </Button>
@@ -150,9 +150,9 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
         >
           <CodeComment>// {slug}</CodeComment>
           <div className="flex items-center gap-3">
-            <Code2 className="h-7 w-7 text-emerald-600" />
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 font-mono">
-              <span className="text-emerald-600">$</span> {project.title.toLowerCase()}
+            <Code2 className="h-7 w-7 text-emerald-400" />
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-100 font-mono">
+              <span className="text-emerald-400">$</span> {project.title.toLowerCase()}
             </h1>
           </div>
           <TerminalPrompt>cat project.md</TerminalPrompt>
@@ -163,13 +163,13 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-white p-6 md:p-8 mb-6"
+          className="bg-slate-900 p-6 md:p-8 mb-6"
         >
           <div className="space-y-6">
             {/* Description */}
             <div>
               <CodeComment>// overview</CodeComment>
-              <p className="mt-3 text-gray-700 leading-relaxed">{project.longDescription}</p>
+              <p className="mt-3 text-slate-300 leading-relaxed">{project.longDescription}</p>
             </div>
 
             {/* Tech Stack */}
@@ -178,36 +178,36 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
               <div className="mt-3 space-y-3">
                 {project.techStack.frontend && (
                   <div>
-                    <span className="font-mono text-sm text-emerald-600">frontend</span>
-                    <span className="font-mono text-sm text-gray-400">: </span>
-                    <span className="font-mono text-sm text-gray-700">
+                    <span className="font-mono text-sm text-emerald-400">frontend</span>
+                    <span className="font-mono text-sm text-slate-500">: </span>
+                    <span className="font-mono text-sm text-slate-300">
                       [{project.techStack.frontend.join(", ")}]
                     </span>
                   </div>
                 )}
                 {project.techStack.backend && (
                   <div>
-                    <span className="font-mono text-sm text-emerald-600">backend</span>
-                    <span className="font-mono text-sm text-gray-400">: </span>
-                    <span className="font-mono text-sm text-gray-700">
+                    <span className="font-mono text-sm text-emerald-400">backend</span>
+                    <span className="font-mono text-sm text-slate-500">: </span>
+                    <span className="font-mono text-sm text-slate-300">
                       [{project.techStack.backend.join(", ")}]
                     </span>
                   </div>
                 )}
                 {project.techStack.database && (
                   <div>
-                    <span className="font-mono text-sm text-emerald-600">database</span>
-                    <span className="font-mono text-sm text-gray-400">: </span>
-                    <span className="font-mono text-sm text-gray-700">
+                    <span className="font-mono text-sm text-emerald-400">database</span>
+                    <span className="font-mono text-sm text-slate-500">: </span>
+                    <span className="font-mono text-sm text-slate-300">
                       [{project.techStack.database.join(", ")}]
                     </span>
                   </div>
                 )}
                 {project.techStack.infrastructure && (
                   <div>
-                    <span className="font-mono text-sm text-emerald-600">infrastructure</span>
-                    <span className="font-mono text-sm text-gray-400">: </span>
-                    <span className="font-mono text-sm text-gray-700">
+                    <span className="font-mono text-sm text-emerald-400">infrastructure</span>
+                    <span className="font-mono text-sm text-slate-500">: </span>
+                    <span className="font-mono text-sm text-slate-300">
                       [{project.techStack.infrastructure.join(", ")}]
                     </span>
                   </div>
@@ -220,8 +220,8 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
               <CodeComment>// features</CodeComment>
               <ul className="mt-3 space-y-2">
                 {project.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2 text-gray-700">
-                    <span className="text-emerald-600 font-mono">-</span>
+                  <li key={i} className="flex items-start gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-mono">-</span>
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -233,8 +233,8 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
               <CodeComment>// challenges & solutions</CodeComment>
               <ul className="mt-3 space-y-2">
                 {project.challenges.map((challenge, i) => (
-                  <li key={i} className="flex items-start gap-2 text-gray-700">
-                    <span className="text-emerald-600 font-mono">→</span>
+                  <li key={i} className="flex items-start gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-mono">→</span>
                     <span>{challenge}</span>
                   </li>
                 ))}
@@ -248,7 +248,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                 {project.tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="rounded border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-mono text-gray-800 hover:border-emerald-400 hover:bg-emerald-50 transition-colors"
+                    className="rounded border border-slate-700 bg-slate-900 px-3 py-1 text-xs font-mono text-slate-200 hover:border-emerald-400 hover:bg-emerald-500/10 transition-colors"
                   >
                     {tag}
                   </span>
@@ -266,7 +266,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-sm text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-2"
+                      className="font-mono text-sm text-slate-300 hover:text-slate-100 transition-colors flex items-center gap-2"
                     >
                       <Github size={18} />
                       <span>open code</span>
@@ -277,7 +277,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-sm text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-2"
+                      className="font-mono text-sm text-slate-300 hover:text-slate-100 transition-colors flex items-center gap-2"
                     >
                       <LinkIcon size={18} />
                       <span>open demo</span>

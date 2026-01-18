@@ -23,12 +23,12 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
-      <div className="flex items-center gap-3 rounded-lg border-2 border-gray-900 bg-white/90 px-4 py-2 shadow-sm">
+      <div className="flex items-center gap-3 rounded-lg border-2 border-slate-700 bg-slate-900/90 px-4 py-2 shadow-sm">
         {/* Logo / prompt */}
-        <div className="hidden md:flex items-center gap-2 border-r border-gray-300 pr-3">
-          <Terminal className="h-4 w-4 text-emerald-600" />
-          <span className="font-mono text-xs text-gray-700">
-            felix@portfolio<span className="text-gray-400">:~</span>
+        <div className="hidden md:flex items-center gap-2 border-r border-slate-700 pr-3">
+          <Terminal className="h-4 w-4 text-emerald-400" />
+          <span className="font-mono text-xs text-slate-200">
+            felix@portfolio<span className="text-slate-500">:~</span>
           </span>
         </div>
 
@@ -43,8 +43,8 @@ export default function Navbar() {
                 className={`flex items-center gap-1 rounded-md px-2 sm:px-3 py-1 font-mono text-xs sm:text-sm transition-colors
                 ${
                   isActive
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-700 hover:bg-gray-100"
+                    ? "bg-emerald-500 text-slate-950"
+                    : "text-slate-300 hover:bg-slate-800"
                 }`}
               >
                 {item.icon}

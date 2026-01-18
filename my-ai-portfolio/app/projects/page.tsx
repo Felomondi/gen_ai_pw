@@ -83,13 +83,13 @@ const itemVariants: Variants = {
 
 const TerminalPrompt: React.FC<React.PropsWithChildren> = ({ children }) => (
   <div className="font-mono text-sm">
-    <span className="text-emerald-600">$</span>{' '}
-    <span className="text-gray-700">{children}</span>
+    <span className="text-emerald-400">$</span>{' '}
+    <span className="text-slate-300">{children}</span>
   </div>
 );
 
 const CodeComment: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <span className="font-mono text-xs text-gray-400">// {children}</span>
+  <span className="font-mono text-xs text-slate-500">// {children}</span>
 );
 
 export default function ProjectsPage() {
@@ -99,9 +99,9 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gray-50 relative overflow-hidden">
+    <main className="min-h-screen bg-slate-950 relative overflow-hidden">
       {/* subtle grid to match home */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
 
       <div className="container mx-auto max-w-7xl px-4 py-16 md:py-24 relative z-10">
         <motion.div
@@ -112,9 +112,9 @@ export default function ProjectsPage() {
         >
           <CodeComment>// projects</CodeComment>
           <div className="flex items-center gap-3">
-            <Layers className="h-7 w-7 text-emerald-600" />
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 font-mono">
-              <span className="text-emerald-600">$</span> projects
+            <Layers className="h-7 w-7 text-emerald-400" />
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-100 font-mono">
+              <span className="text-emerald-400">$</span> projects
             </h1>
           </div>
           <TerminalPrompt>ls ./projects</TerminalPrompt>
@@ -129,33 +129,33 @@ export default function ProjectsPage() {
           >
             {projects.map((project, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <div className="rounded-lg border-2 border-gray-900 bg-white h-full flex flex-col overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <div className="rounded-lg border-2 border-slate-700 bg-slate-900 h-full flex flex-col overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <div className="p-5 flex-grow space-y-3">
                     <div className="flex items-start justify-between gap-3">
-                      <h2 className="font-mono text-lg text-gray-900">
+                      <h2 className="font-mono text-lg text-slate-100">
                         {project.title}
                       </h2>
                       {project.hasDetailPage && (
                         <Link
                           href={`/projects/${project.slug}`}
-                          className="font-mono text-xs text-gray-900 hover:text-emerald-600 transition-colors flex items-center gap-1 font-medium"
+                          className="font-mono text-xs text-slate-200 hover:text-emerald-400 transition-colors flex items-center gap-1 font-medium"
                         >
                           <span>read more</span>
                           <ArrowRight size={12} />
                         </Link>
                       )}
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-slate-300 text-sm leading-relaxed">
                       {project.description}
                     </p>
                   </div>
-                  <div className="p-5 bg-gray-50 border-t border-gray-200 space-y-3">
+                  <div className="p-5 bg-slate-900 border-t border-slate-800 space-y-3">
                     <CodeComment>// stack</CodeComment>
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, tIndex) => (
                         <span
                           key={tIndex}
-                          className="rounded border border-gray-300 bg-white px-2.5 py-1 text-xs font-mono text-gray-800 hover:border-emerald-400 hover:bg-emerald-50 transition-colors"
+                          className="rounded border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs font-mono text-slate-200 hover:border-emerald-400 hover:bg-emerald-500/10 transition-colors"
                         >
                           {tag}
                         </span>
@@ -167,7 +167,7 @@ export default function ProjectsPage() {
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-mono text-xs text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-2"
+                          className="font-mono text-xs text-slate-300 hover:text-slate-100 transition-colors flex items-center gap-2"
                         >
                           <Github size={16} />
                           <span>open code</span>
@@ -178,7 +178,7 @@ export default function ProjectsPage() {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-mono text-xs text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-2"
+                          className="font-mono text-xs text-slate-300 hover:text-slate-100 transition-colors flex items-center gap-2"
                         >
                           <LinkIcon size={16} />
                           <span>open demo</span>
