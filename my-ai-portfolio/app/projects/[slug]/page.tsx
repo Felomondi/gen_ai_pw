@@ -126,6 +126,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
     <main className="min-h-screen bg-slate-950 relative overflow-hidden">
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+      <div className="absolute inset-0 noise-overlay opacity-25" />
 
       <div className="container mx-auto max-w-4xl px-4 py-16 md:py-24 relative z-10">
         {/* Back button */}
@@ -158,12 +159,14 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
           <TerminalPrompt>cat project.md</TerminalPrompt>
         </motion.div>
 
+        <div className="mb-8 h-px bg-gradient-to-r from-transparent via-slate-700/60 to-transparent" />
+
         {/* Main content card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-slate-900 p-6 md:p-8 mb-6"
+          className="bg-slate-900/90 p-6 md:p-8 mb-6 ring-1 ring-white/5 shadow-[0_12px_34px_-18px_rgba(0,0,0,0.85)]"
         >
           <div className="space-y-6">
             {/* Description */}

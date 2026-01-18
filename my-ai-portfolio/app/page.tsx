@@ -70,6 +70,7 @@ export default function HomePage() {
     <main className="min-h-screen w-full bg-slate-950 relative overflow-hidden">
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+      <div className="absolute inset-0 noise-overlay opacity-25" />
       
       <div className="container mx-auto max-w-5xl px-4 py-16 md:py-24 relative z-10">
         {/* ---------------- HERO ---------------- */}
@@ -164,6 +165,8 @@ export default function HomePage() {
           </div>
         </motion.div>
 
+        <div className="my-12 h-px bg-gradient-to-r from-transparent via-slate-700/60 to-transparent" />
+
         {/* ---------------- SYSTEM SNAPSHOT ---------------- */}
         <motion.section
           variants={sectionVariants}
@@ -173,7 +176,7 @@ export default function HomePage() {
         >
           <motion.div
             variants={itemVariants}
-            className="rounded-lg border border-slate-800 bg-slate-900 p-4 shadow-sm"
+            className="rounded-lg border border-slate-800/80 bg-slate-900/90 p-4 ring-1 ring-white/5 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.8)] transition-transform duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40"
           >
             <CodeComment>// now</CodeComment>
             <div className="mt-3 space-y-1 font-mono text-sm text-slate-200">
@@ -197,7 +200,7 @@ export default function HomePage() {
 
           <motion.div
             variants={itemVariants}
-            className="rounded-lg border border-slate-800 bg-slate-900 p-4 shadow-sm"
+            className="rounded-lg border border-slate-800/80 bg-slate-900/90 p-4 ring-1 ring-white/5 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.8)] transition-transform duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40"
           >
             <CodeComment>// current stack and tools</CodeComment>
             <div className="mt-3 font-mono text-sm text-slate-200 space-y-1">
@@ -226,7 +229,7 @@ export default function HomePage() {
 
           <motion.div
             variants={itemVariants}
-            className="rounded-lg border border-slate-800 bg-slate-900 p-4 shadow-sm"
+            className="rounded-lg border border-slate-800/80 bg-slate-900/90 p-4 ring-1 ring-white/5 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.8)] transition-transform duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40"
           >
             <CodeComment>// status</CodeComment>
             <div className="mt-3 font-mono text-sm text-slate-200 space-y-1">
@@ -249,6 +252,8 @@ export default function HomePage() {
           </motion.div>
         </motion.section>
 
+        <div className="my-12 h-px bg-gradient-to-r from-transparent via-slate-700/60 to-transparent" />
+
         {/* ---------------- EDUCATION ---------------- */}
         <motion.section
           variants={sectionVariants}
@@ -265,7 +270,7 @@ export default function HomePage() {
 
           <motion.div
             variants={itemVariants}
-            className="rounded-lg border-2 border-slate-700 bg-slate-900 p-6 shadow-sm"
+            className="rounded-lg border-2 border-slate-700/90 bg-slate-900/90 p-6 ring-1 ring-white/5 shadow-[0_12px_34px_-18px_rgba(0,0,0,0.85)]"
           >
             <div className="space-y-4">
               <div>
@@ -293,7 +298,7 @@ export default function HomePage() {
                 </div>
               </div>
               
-              <div className="pt-4 border-t border-slate-800">
+              <div className="pt-4 border-t border-slate-800/80">
                 <p className="text-sm font-medium uppercase tracking-wide text-slate-500 mb-3 font-mono">
                   <CodeComment>// Relevant Coursework</CodeComment>
                 </p>
