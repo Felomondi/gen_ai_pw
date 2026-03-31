@@ -1,93 +1,51 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* We define the animation keyframes here */
-@keyframes animated-gradient {
-  from {
-    background-position: 0% 50%;
-  }
-  to {
-    background-position: 100% 50%;
-  }
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --border: #e5e5e5;
+  --link: #1a1a1a;
 }
 
 body {
-  background-color: #0b0f14;
-  color: #e5e7eb;
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Global type tuning for a premium feel */
-h1 {
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+::selection {
+  background-color: #1a1a1a;
+  color: #ffffff;
 }
 
-h2,
-h3 {
-  line-height: 1.2;
-  letter-spacing: -0.015em;
+h1, h2, h3 {
+  color: var(--text);
 }
 
 p {
   line-height: 1.7;
 }
 
-/* Subtle noise for premium texture */
-.noise-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 140px 140px;
-  mix-blend-mode: soft-light;
-  pointer-events: none;
+a.inline-link {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: opacity 0.2s;
 }
 
-@keyframes chat-glow {
-  0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.35);
-  }
-  70% {
-    box-shadow: 0 0 0 12px rgba(16, 185, 129, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-  }
+a.inline-link:hover {
+  opacity: 0.6;
 }
 
-.chat-glow {
-  animation: chat-glow 2.4s ease-out infinite;
+@keyframes scan {
+  0% { top: -2px; opacity: 1; }
+  100% { top: 100%; opacity: 0; }
 }
 
-/* Monospace font for tech aesthetic */
-.font-mono {
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+.animate-scan {
+  animation: scan 1.5s ease-out forwards;
 }
-
-/* Keyframes for the sparkle animation on chat button*/
-@keyframes sparkle-animation {
-  0%, 100% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-/* Base style for each sparkle element */
-.sparkle {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background-color: white;
-  border-radius: 50%;
-  opacity: 0;
-  animation: sparkle-animation 2s infinite;
-}
-
-/* Position and delay each sparkle differently for a random effect */
-.sparkle:nth-of-type(1) { top: 10%; left: 10%; animation-delay: 0s; }
-.sparkle:nth-of-type(2) { top: 20%; left: 90%; animation-delay: 0.3s; }
-.sparkle:nth-of-type(3) { top: 80%; left: 85%; animation-delay: 0.7s; }
-.sparkle:nth-of-type(4) { top: 90%; left: 20%; animation-delay: 1.2s; }
-.sparkle:nth-of-type(5) { top: 50%; left: 50%; animation-delay: 1.5s; }
