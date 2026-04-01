@@ -23,9 +23,9 @@ export default function HomePage() {
       {/* Bio */}
       <div className="mt-12 space-y-6 text-[15px] leading-[1.75] text-[var(--text-secondary)]">
         <p>
-          i like building things across the full stack — places where
+          i like building things across the full stack, places where
           systems design, clean interfaces, and AI tooling all come together.
-          curious by nature, always learning something new.
+          Always learning something new, always building something new.
         </p>
 
         <p>
@@ -48,15 +48,11 @@ export default function HomePage() {
         </p>
 
         <p>
-          reach me at{" "}
-          <a href="mailto:fomondi@vassar.edu" className="inline-link">
-            fomondi@vassar.edu
-          </a>{" "}
-          or dm on{" "}
+          reach out to me{" "} on{" "}
           <a href="https://www.linkedin.com/in/felomondi/" target="_blank" rel="noopener noreferrer" className="inline-link">
             linkedin
           </a>
-          .
+          , or use the contact form.
         </p>
       </div>
 

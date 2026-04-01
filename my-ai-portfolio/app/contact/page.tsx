@@ -90,9 +90,7 @@ export default function ContactPage() {
         <p>
           or find me on{" "}
           <a href="https://github.com/Felomondi" target="_blank" rel="noopener noreferrer" className="inline-link">github</a>,{" "}
-          <a href="https://www.linkedin.com/in/felomondi/" target="_blank" rel="noopener noreferrer" className="inline-link">linkedin</a>,{" "}
-          or email me at{" "}
-          <a href="mailto:fomondi@vassar.edu" className="inline-link">fomondi@vassar.edu</a>.
+          <a href="https://www.linkedin.com/in/felomondi/" target="_blank" rel="noopener noreferrer" className="inline-link">linkedin</a>.{" "}
         </p>
       </div>
     </div>
