@@ -37,11 +37,11 @@ export default function AgentHomePage() {
         <div className="space-y-3 font-mono text-[13px]">
           <div>
             <p className="font-semibold text-[#1a1a1a]">
-              Founder — Audrey{" "}
-              <span className="font-normal text-[#999]">(current, stealth)</span>
+              Founding Engineer — TopMarksPrep{" "}
+              <span className="font-normal text-[#999]">(current)</span>
             </p>
             <p className="text-[#666] text-[12px] pl-0.5">
-              Building tools around agent safety and control in production systems, starting with voice agents.
+              Building production AI features on a Next.js and Node/Python stack with Anthropic Claude integration, including AI grading and practice problem generation for test prep students.
             </p>
           </div>
           <div>
@@ -70,9 +70,9 @@ export default function AgentHomePage() {
       <AgentBlock label="BIO">
         <p className="text-[13px] text-[#666] leading-[1.7]">
           Full-stack developer who enjoys building at the intersection of systems design, clean
-          interfaces, and AI tooling. Curious by nature, always learning something new. Currently a
-          senior at Vassar College studying computer science and mathematics with a focus on
-          statistics. Growing interest in AI/ML and building interfaces that feel right.
+          interfaces, and AI tooling. Curious by nature, always learning something new. Recent
+          graduate of Vassar College with a degree in computer science and mathematics (statistics).
+          Growing interest in AI/ML and building interfaces that feel right.
         </p>
         <BridgertonNote>
           &quot;A delightful aside: this entire portfolio bears a human and agent toggle because its creator found the notion terribly amusing. He was not wrong.&quot;

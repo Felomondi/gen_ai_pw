@@ -5,6 +5,20 @@ import AgentExperiencePage from "@/components/agent/AgentExperiencePage";
 
 const experiences = [
   {
+    role: "Founding Engineer",
+    company: "TopMarksPrep",
+    date: "Apr 2026 – Present",
+    location: "Remote",
+    description: {
+      points: [
+        "building production AI features end-to-end on a next.js and node/python stack with anthropic claude integration, including AI grading and practice problem generation for test prep students.",
+        "designed structured prompting and output validation pipelines that catch malformed model outputs before they reach students, including rubric-based grading calibrated against reference student responses.",
+        "own full-stack feature delivery from database schema and API design through react UI, shipping features that students rely on for high-stakes exam preparation.",
+      ],
+    },
+    skills: ["next.js", "node", "python", "claude", "react"],
+  },
+  {
     role: "Founder",
     company: "Audrey",
     date: "Nov 2025 – Present",

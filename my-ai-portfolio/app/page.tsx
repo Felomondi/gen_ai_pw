@@ -29,17 +29,18 @@ export default function HomePage() {
         </p>
 
         <p>
-          senior studying computer science and mathematics (statistics) at{" "}
+          recent graduate of{" "}
           <a href="https://www.vassar.edu/" target="_blank" rel="noopener noreferrer" className="inline-link">
             vassar college
           </a>
-          . building thoughtful software with a growing focus on AI/ML and
+          {" "}with a degree in computer science and mathematics (statistics).
+          building thoughtful software with a growing focus on AI/ML and
           interfaces that feel right.
         </p>
 
         <p>
-          founder at{" "}
-          <span className="text-[var(--text)]">audrey</span> (stealth).
+          founding engineer at{" "}
+          <span className="text-[var(--text)]">topmarksprep</span>.
           previously software engineer intern at{" "}
           <span className="text-[var(--text)]">morgan stanley</span> and{" "}
           <span className="text-[var(--text)]">amazon</span>.
@@ -60,7 +61,7 @@ export default function HomePage() {
       <div className="mt-20 space-y-3">
         <div className="flex items-center gap-2 text-[15px] text-[var(--text-secondary)]">
           <span className="h-2 w-2 rounded-full bg-[var(--text)]" />
-          founder @ audrey (stealth)
+          founding engineer @ topmarksprep
         </div>
       </div>
 
