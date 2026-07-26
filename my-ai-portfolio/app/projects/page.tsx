@@ -6,6 +6,15 @@ import AgentProjectsPage from "@/components/agent/AgentProjectsPage";
 
 const projects = [
   {
+    title: "Framer Export",
+    slug: null,
+    description: "exports published Framer sites to private GitHub repositories and self-hostable ZIP files.",
+    tags: ["next.js", "typescript", "github oauth", "web extraction"],
+    githubUrl: null,
+    liveUrl: "https://www.framerextract.com/",
+    hasDetailPage: false,
+  },
+  {
     title: "CoTeacher AI",
     slug: "coteacher-ai",
     description: "full-stack RAG platform — instructors upload course materials, students chat with a course-specific AI. multi-role auth, vector search, streaming responses.",

@@ -4,6 +4,14 @@ import { AgentBlock, ScanLine, AsciiArt, BridgertonNote } from "./AgentBlock";
 
 const projects = [
   {
+    title: "Framer Export",
+    description:
+      "Exports published Framer sites to private GitHub repositories and self-hostable ZIP files.",
+    tags: ["next.js", "typescript", "github oauth", "web extraction"],
+    github: null,
+    live: "https://www.framerextract.com/",
+  },
+  {
     title: "CoTeacher AI",
     description:
       "Full-stack RAG platform — instructors upload course materials, students chat with a course-specific AI. Multi-role auth, vector search, streaming responses.",
@@ -66,8 +74,26 @@ export default function AgentProjectsPage() {
             <p className="mt-1.5 text-[#999] text-[11px]">{p.tags.join(" · ")}</p>
             {(p.github || p.live) && (
               <div className="mt-1.5 flex gap-3 text-[11px]">
-                {p.github && <span className="text-[#1a1a1a]">code: {p.github}</span>}
-                {p.live && <span className="text-[#1a1a1a]">live: {p.live}</span>}
+                {p.github && (
+                  <a
+                    href={`https://${p.github}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1a1a1a]"
+                  >
+                    code: {p.github}
+                  </a>
+                )}
+                {p.live && (
+                  <a
+                    href={p.live.startsWith("http") ? p.live : `https://${p.live}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1a1a1a]"
+                  >
+                    live: {p.live}
+                  </a>
+                )}
               </div>
             )}
           </div>
