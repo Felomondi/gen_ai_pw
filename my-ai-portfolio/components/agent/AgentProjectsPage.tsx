@@ -4,6 +4,14 @@ import { AgentBlock, ScanLine, AsciiArt, BridgertonNote } from "./AgentBlock";
 
 const projects = [
   {
+    title: "Relynt",
+    description:
+      "Write-action firewall that evaluates AI agent requests against declarative policies in under 40ms, returning allow, block, or escalate decisions before execution.",
+    tags: ["typescript", "python", "fastapi", "tailwind css", "supabase", "openai"],
+    github: null,
+    live: "https://relynt.vercel.app/",
+  },
+  {
     title: "Framer Export",
     description:
       "Exports published Framer sites to private GitHub repositories and self-hostable ZIP files.",
