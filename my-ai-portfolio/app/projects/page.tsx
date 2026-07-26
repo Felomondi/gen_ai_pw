@@ -6,6 +6,15 @@ import AgentProjectsPage from "@/components/agent/AgentProjectsPage";
 
 const projects = [
   {
+    title: "Relynt",
+    slug: null,
+    description: "write-action firewall that evaluates AI agent requests against declarative policies in under 40ms, returning allow, block, or escalate decisions before execution.",
+    tags: ["typescript", "python", "fastapi", "tailwind css", "supabase", "openai"],
+    githubUrl: null,
+    liveUrl: "https://relynt.vercel.app/",
+    hasDetailPage: false,
+  },
+  {
     title: "Framer Export",
     slug: null,
     description: "exports published Framer sites to private GitHub repositories and self-hostable ZIP files.",
