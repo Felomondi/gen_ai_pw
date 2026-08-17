@@ -4,7 +4,30 @@ import Link from "next/link";
 import { useMode } from "@/components/ModeContext";
 import AgentProjectsPage from "@/components/agent/AgentProjectsPage";
 
-const projects = [
+type Project = {
+  title: string;
+  slug: string | null;
+  category: string;
+  description: string;
+  tags: string[];
+  githubUrl: string | null;
+  liveUrl: string | null;
+  liveLabel?: string;
+  hasDetailPage: boolean;
+};
+
+const projects: Project[] = [
+  {
+    title: "Remi",
+    slug: null,
+    category: "voice · fintech",
+    description: "tracking expenses should be as easy as speaking",
+    tags: ["ios", "voice recognition", "ai"],
+    githubUrl: null,
+    liveUrl: "https://www.getremiapp.com/",
+    liveLabel: "website",
+    hasDetailPage: false,
+  },
   {
     title: "Relynt",
     slug: null,
@@ -157,7 +180,7 @@ export default function ProjectsPage() {
             {(p.liveUrl || p.githubUrl || (p.hasDetailPage && p.slug)) && (
               <div className="mt-4 flex flex-wrap gap-2">
                 {p.liveUrl && (
-                  <ProjectLink href={p.liveUrl} label="live demo" external />
+                  <ProjectLink href={p.liveUrl} label={p.liveLabel ?? "live demo"} external />
                 )}
                 {p.githubUrl && (
                   <ProjectLink href={p.githubUrl} label="source" external />

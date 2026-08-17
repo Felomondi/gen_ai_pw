@@ -4,6 +4,14 @@ import { AgentBlock, ScanLine, AsciiArt, BridgertonNote } from "./AgentBlock";
 
 const projects = [
   {
+    title: "Remi",
+    description:
+      "Tracking expenses should be as easy as speaking. Voice-driven expense tracker for iOS — speak a purchase and it captures amount, merchant, and category. Also does receipt scanning and on-device privacy.",
+    tags: ["ios", "voice recognition", "ai"],
+    github: null,
+    live: "https://www.getremiapp.com/",
+  },
+  {
     title: "Relynt",
     description:
       "Write-action firewall that evaluates AI agent requests against declarative policies in under 40ms, returning allow, block, or escalate decisions before execution.",
