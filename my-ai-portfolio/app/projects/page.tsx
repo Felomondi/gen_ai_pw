@@ -136,9 +136,9 @@ export default function ProjectsPage() {
         things i&apos;ve built — full-stack systems, AI tooling, and product interfaces.
       </p>
 
-      <div className="mt-14 border-t border-[var(--border)] divide-y divide-[var(--border)]">
+      <div className="mt-14 space-y-12">
         {projects.map((p) => (
-          <article key={p.title} className="py-8 first:pt-10">
+          <article key={p.title}>
             <div className="flex items-baseline justify-between gap-4">
               <h2 className="text-lg font-medium text-[var(--text)]">{p.title}</h2>
               <span className="shrink-0 font-mono text-xs text-[var(--text-muted)]">
