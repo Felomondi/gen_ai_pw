@@ -4,11 +4,36 @@ import Link from "next/link";
 import { useMode } from "@/components/ModeContext";
 import AgentProjectsPage from "@/components/agent/AgentProjectsPage";
 
-const projects = [
+type Project = {
+  title: string;
+  slug: string | null;
+  category: string;
+  description: string;
+  tags: string[];
+  githubUrl: string | null;
+  liveUrl: string | null;
+  liveLabel?: string;
+  hasDetailPage: boolean;
+};
+
+const projects: Project[] = [
+  {
+    title: "Remi",
+    slug: null,
+    category: "voice · fintech",
+    description: "tracking expenses should be as easy as speaking",
+    tags: ["ios", "voice recognition", "ai"],
+    githubUrl: null,
+    liveUrl: "https://www.getremiapp.com/",
+    liveLabel: "website",
+    hasDetailPage: false,
+  },
   {
     title: "Relynt",
     slug: null,
-    description: "write-action firewall that evaluates AI agent requests against declarative policies in under 40ms, returning allow, block, or escalate decisions before execution.",
+    category: "ai infrastructure",
+    description:
+      "write-action firewall that evaluates AI agent requests against declarative policies in under 40ms, returning allow, block, or escalate decisions before execution.",
     tags: ["typescript", "python", "fastapi", "tailwind css", "supabase", "openai"],
     githubUrl: null,
     liveUrl: "https://relynt.vercel.app/",
@@ -17,7 +42,9 @@ const projects = [
   {
     title: "Framer Export",
     slug: null,
-    description: "exports published Framer sites to private GitHub repositories and self-hostable ZIP files.",
+    category: "developer tool",
+    description:
+      "exports published Framer sites to private GitHub repositories and self-hostable ZIP files.",
     tags: ["next.js", "typescript", "github oauth", "web extraction"],
     githubUrl: null,
     liveUrl: "https://www.framerextract.com/",
@@ -26,7 +53,9 @@ const projects = [
   {
     title: "CoTeacher AI",
     slug: "coteacher-ai",
-    description: "full-stack RAG platform — instructors upload course materials, students chat with a course-specific AI. multi-role auth, vector search, streaming responses.",
+    category: "ai · full-stack",
+    description:
+      "full-stack RAG platform — instructors upload course materials, students chat with a course-specific AI. multi-role auth, vector search, streaming responses.",
     tags: ["next.js", "typescript", "supabase", "openai"],
     githubUrl: null,
     liveUrl: null,
@@ -35,7 +64,9 @@ const projects = [
   {
     title: "SlidesDesk",
     slug: "slidesdesk",
-    description: "turns long briefs into structured presentation outlines using AI. fastapi backend with pydantic validation, react frontend with inline editing.",
+    category: "ai tooling",
+    description:
+      "turns long briefs into structured presentation outlines using AI. fastapi backend with pydantic validation, react frontend with inline editing.",
     tags: ["python", "fastapi", "react", "openai"],
     githubUrl: "https://github.com/Felomondi/slidesdeck-frontend",
     liveUrl: "https://slidesdeck.vercel.app/",
@@ -44,7 +75,9 @@ const projects = [
   {
     title: "LitLore (Android)",
     slug: null,
-    description: "android app for book discovery with google books API. login, search, reviews, ratings, and a social feed.",
+    category: "mobile app",
+    description:
+      "android app for book discovery with google books API. login, search, reviews, ratings, and a social feed.",
     tags: ["java", "google books api"],
     githubUrl: "https://github.com/Felomondi/Litlore-android",
     liveUrl: null,
@@ -53,7 +86,9 @@ const projects = [
   {
     title: "LitLore (Web)",
     slug: null,
-    description: "web version of the book discovery platform. search, reviews, star ratings, and social following.",
+    category: "web app",
+    description:
+      "web version of the book discovery platform. search, reviews, star ratings, and social following.",
     tags: ["react", "python", "docker"],
     githubUrl: "https://github.com/Felomondi/Litlore-website",
     liveUrl: "https://litlore.netlify.app/",
@@ -62,7 +97,9 @@ const projects = [
   {
     title: "Restaurant Ordering System",
     slug: null,
-    description: "ordering system that improved processing speed by 40%. sql-backed with optimized data retrieval.",
+    category: "full-stack",
+    description:
+      "ordering system that improved processing speed by 40%. sql-backed with optimized data retrieval.",
     tags: ["javascript", "vue.js", "sql"],
     githubUrl: "https://github.com/Felomondi/Restaurant_Ordiering_System",
     liveUrl: null,
@@ -71,13 +108,42 @@ const projects = [
   {
     title: "Travelling Web UI/UX",
     slug: null,
-    description: "front-end for a hiking app with interactive mapping and offline route tracking interfaces.",
+    category: "frontend",
+    description:
+      "front-end for a hiking app with interactive mapping and offline route tracking interfaces.",
     tags: ["next.js", "tailwind", "typescript"],
     githubUrl: "https://github.com/Felomondi/Travel_web_UI_UX",
     liveUrl: "https://travel-web-ui-ux.vercel.app/",
     hasDetailPage: false,
   },
 ];
+
+function ProjectLink({
+  href,
+  label,
+  external,
+}: {
+  href: string;
+  label: string;
+  external?: boolean;
+}) {
+  const className =
+    "inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] px-3.5 py-1.5 text-xs text-[var(--text-secondary)] hover:border-[var(--text)] hover:text-[var(--text)] transition-colors";
+
+  if (external) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {label} <span aria-hidden="true">↗</span>
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={className}>
+      {label} <span aria-hidden="true">→</span>
+    </Link>
+  );
+}
 
 export default function ProjectsPage() {
   const { mode } = useMode();
@@ -93,38 +159,37 @@ export default function ProjectsPage() {
         things i&apos;ve built — full-stack systems, AI tooling, and product interfaces.
       </p>
 
-      <div className="mt-14 space-y-10">
+      <div className="mt-14 space-y-12">
         {projects.map((p) => (
-          <article key={p.title} className="group">
-            <div className="flex items-baseline gap-3 flex-wrap">
-              <h2 className="text-base font-medium text-[var(--text)]">
-                {p.hasDetailPage && p.slug ? (
-                  <Link href={`/projects/${p.slug}`} className="inline-link">
-                    {p.title}
-                  </Link>
-                ) : (
-                  p.title
-                )}
-              </h2>
-              <div className="flex gap-2">
-                {p.githubUrl && (
-                  <a href={p.githubUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">
-                    code
-                  </a>
-                )}
-                {p.liveUrl && (
-                  <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">
-                    demo
-                  </a>
-                )}
-              </div>
+          <article key={p.title}>
+            <div className="flex items-baseline justify-between gap-4">
+              <h2 className="text-lg font-medium text-[var(--text)]">{p.title}</h2>
+              <span className="shrink-0 font-mono text-xs text-[var(--text-muted)]">
+                {p.category}
+              </span>
             </div>
-            <p className="mt-1.5 text-[15px] text-[var(--text-secondary)] leading-relaxed">
+
+            <p className="mt-2 text-[15px] text-[var(--text-secondary)] leading-relaxed">
               {p.description}
             </p>
-            <p className="mt-2 text-xs text-[var(--text-muted)]">
+
+            <p className="mt-3 font-mono text-xs text-[var(--text-muted)]">
               {p.tags.join(" · ")}
             </p>
+
+            {(p.liveUrl || p.githubUrl || (p.hasDetailPage && p.slug)) && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {p.liveUrl && (
+                  <ProjectLink href={p.liveUrl} label={p.liveLabel ?? "live demo"} external />
+                )}
+                {p.githubUrl && (
+                  <ProjectLink href={p.githubUrl} label="source" external />
+                )}
+                {p.hasDetailPage && p.slug && (
+                  <ProjectLink href={`/projects/${p.slug}`} label="case study" />
+                )}
+              </div>
+            )}
           </article>
         ))}
       </div>

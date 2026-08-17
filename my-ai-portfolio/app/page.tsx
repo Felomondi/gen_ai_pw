@@ -44,8 +44,6 @@ export default function HomePage() {
           previously software engineer intern at{" "}
           <span className="text-[var(--text)]">morgan stanley</span> and{" "}
           <span className="text-[var(--text)]">amazon</span>.
-          co-founded{" "}
-          <span className="text-[var(--text)]">lunchbox</span>.
         </p>
 
         <p>
