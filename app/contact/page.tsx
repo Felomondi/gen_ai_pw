@@ -3,15 +3,10 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useMode } from "@/components/ModeContext";
-import AgentContactPage from "@/components/agent/AgentContactPage";
 
 export default function ContactPage() {
-  const { mode } = useMode();
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  if (mode === "agent") return <AgentContactPage />;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));

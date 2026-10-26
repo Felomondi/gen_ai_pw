@@ -3,7 +3,6 @@ import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import { ModeProvider } from "@/components/ModeContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,13 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`}>
       <body className="font-[family-name:var(--font-body)]">
-        <ModeProvider>
-          <Nav />
-          <main className="pt-16">
-            {children}
-          </main>
-          <Footer />
-        </ModeProvider>
+        <Nav />
+        <main className="pt-16">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

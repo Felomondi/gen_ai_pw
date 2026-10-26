@@ -1,8 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { useMode } from "@/components/ModeContext";
-import AgentProjectsPage from "@/components/agent/AgentProjectsPage";
 
 type Project = {
   title: string;
@@ -146,10 +142,6 @@ function ProjectLink({
 }
 
 export default function ProjectsPage() {
-  const { mode } = useMode();
-
-  if (mode === "agent") return <AgentProjectsPage />;
-
   return (
     <div className="mx-auto max-w-[720px] px-6 py-20 md:py-28">
       <h1 className="font-[family-name:var(--font-display)] text-4xl md:text-5xl tracking-tight">

@@ -1,8 +1,3 @@
-"use client";
-
-import { useMode } from "@/components/ModeContext";
-import AgentExperiencePage from "@/components/agent/AgentExperiencePage";
-
 const experiences = [
   {
     role: "Founding Engineer",
@@ -84,10 +79,6 @@ const experiences = [
 ];
 
 export default function ExperiencePage() {
-  const { mode } = useMode();
-
-  if (mode === "agent") return <AgentExperiencePage />;
-
   return (
     <div className="mx-auto max-w-[720px] px-6 py-20 md:py-28">
       <h1 className="font-[family-name:var(--font-display)] text-4xl md:text-5xl tracking-tight">
