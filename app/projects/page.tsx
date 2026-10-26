@@ -36,6 +36,30 @@ const projects: Project[] = [
     hasDetailPage: false,
   },
   {
+    title: "Sendleaf",
+    slug: null,
+    category: "legal · ai",
+    description:
+      "an ai paralegal for immigration law firms.",
+    tags: ["ai", "legal tech"],
+    githubUrl: null,
+    liveUrl: "https://www.sendleaf.co/",
+    liveLabel: "website",
+    hasDetailPage: false,
+  },
+  {
+    title: "Pilcrow",
+    slug: null,
+    category: "macos · productivity",
+    description:
+      "a mac menu-bar app that transcribes your calls on-device and writes the summary and action items when they end — nothing leaves your computer.",
+    tags: ["macos", "on-device ai", "apple intelligence"],
+    githubUrl: null,
+    liveUrl: "https://pilcrownotes.com/",
+    liveLabel: "website",
+    hasDetailPage: false,
+  },
+  {
     title: "Framer Export",
     slug: null,
     category: "developer tool",
@@ -67,50 +91,6 @@ const projects: Project[] = [
     githubUrl: "https://github.com/Felomondi/slidesdeck-frontend",
     liveUrl: "https://slidesdeck.vercel.app/",
     hasDetailPage: true,
-  },
-  {
-    title: "LitLore (Android)",
-    slug: null,
-    category: "mobile app",
-    description:
-      "android app for book discovery with google books API. login, search, reviews, ratings, and a social feed.",
-    tags: ["java", "google books api"],
-    githubUrl: "https://github.com/Felomondi/Litlore-android",
-    liveUrl: null,
-    hasDetailPage: false,
-  },
-  {
-    title: "LitLore (Web)",
-    slug: null,
-    category: "web app",
-    description:
-      "web version of the book discovery platform. search, reviews, star ratings, and social following.",
-    tags: ["react", "python", "docker"],
-    githubUrl: "https://github.com/Felomondi/Litlore-website",
-    liveUrl: "https://litlore.netlify.app/",
-    hasDetailPage: false,
-  },
-  {
-    title: "Restaurant Ordering System",
-    slug: null,
-    category: "full-stack",
-    description:
-      "ordering system that improved processing speed by 40%. sql-backed with optimized data retrieval.",
-    tags: ["javascript", "vue.js", "sql"],
-    githubUrl: "https://github.com/Felomondi/Restaurant_Ordiering_System",
-    liveUrl: null,
-    hasDetailPage: false,
-  },
-  {
-    title: "Travelling Web UI/UX",
-    slug: null,
-    category: "frontend",
-    description:
-      "front-end for a hiking app with interactive mapping and offline route tracking interfaces.",
-    tags: ["next.js", "tailwind", "typescript"],
-    githubUrl: "https://github.com/Felomondi/Travel_web_UI_UX",
-    liveUrl: "https://travel-web-ui-ux.vercel.app/",
-    hasDetailPage: false,
   },
 ];
 
