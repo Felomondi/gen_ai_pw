@@ -1,9 +1,4 @@
-"use client";
-
-import { use } from "react";
 import Link from "next/link";
-import { useMode } from "@/components/ModeContext";
-import AgentProjectDetailPage from "@/components/agent/AgentProjectDetailPage";
 
 const projectDetails: Record<
   string,
@@ -82,13 +77,12 @@ const projectDetails: Record<
   },
 };
 
-export default function ProjectDetailPage({
+export default async function ProjectDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { mode } = useMode();
-  const { slug } = use(params);
+  const { slug } = await params;
   const project = projectDetails[slug];
 
   if (!project) {
@@ -101,8 +95,6 @@ export default function ProjectDetailPage({
       </div>
     );
   }
-
-  if (mode === "agent") return <AgentProjectDetailPage project={project} />;
 
   return (
     <div className="mx-auto max-w-[720px] px-6 py-20 md:py-28">
